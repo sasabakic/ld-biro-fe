@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LD Biro - Professional Accounting & Financial Services
 
-## Getting Started
+A modern, responsive website for LD Biro accounting firm built with Next.js, React, and Tailwind CSS.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Modern Design**: Clean, professional design with smooth animations and transitions
+- **Responsive Layout**: Optimized for desktop, tablet, and mobile devices
+- **Performance Optimized**: Built with Next.js 15 for optimal performance and SEO
+- **Accessibility**: WCAG compliant with proper focus management and semantic HTML
+- **Smooth Scrolling**: Interactive navigation with smooth scroll to sections
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Frontend**: React 18 with TypeScript
+- **Styling**: Tailwind CSS v4
+- **Font**: Inter (Google Fonts)
+- **Icons**: Emoji icons for cross-platform compatibility
+
+## 📋 Sections
+
+### 🏠 Hero Section
+
+- Compelling headline with gradient text effects
+- Call-to-action buttons
+- Key statistics display (Years Experience, Happy Clients, Success Rate, Support)
+
+### 💼 Services Section
+
+- Tax Planning & Preparation
+- Bookkeeping & Accounting
+- Financial Consulting
+- Payroll Management
+- Business Formation
+- Audit & Assurance
+
+### 🏢 About Section
+
+- Company overview and experience
+- Why choose LD Biro
+- Key differentiators and expertise
+
+### 📞 Contact Section
+
+- Contact information display
+- Contact form for inquiries
+- Business hours and location
+
+### 🔗 Footer
+
+- Company links and information
+- Service categories
+- Social media links
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone [repository-url]
+   cd ld-biro-fe
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Run the development server**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📁 Project Structure
+
+```
+ld-biro-fe/
+├── src/
+│   └── app/
+│       ├── globals.css          # Global styles and Tailwind configuration
+│       ├── layout.tsx           # Root layout with metadata
+│       ├── page.tsx             # Main landing page
+│       └── favicon.ico          # Site favicon
+├── public/                      # Static assets
+├── package.json                 # Dependencies and scripts
+├── tailwind.config.ts          # Tailwind configuration
+├── tsconfig.json               # TypeScript configuration
+└── next.config.ts              # Next.js configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Design Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Color Palette
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Primary**: Blue gradient (from-slate-900 via-blue-900 to-indigo-900)
+- **Secondary**: White and slate colors
+- **Accent**: Blue-600/700 for CTAs
 
-## Learn More
+### Typography
 
-To learn more about Next.js, take a look at the following resources:
+- **Font Family**: Inter (Google Fonts)
+- **Headings**: Bold weights (600-700)
+- **Body**: Regular weight with optimal line height
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Animations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Fade-in effects on page load
+- Hover transitions on interactive elements
+- Smooth scroll navigation
+- Scale transforms on buttons
 
-## Deploy on Vercel
+## 📱 Responsive Design
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Mobile First**: Designed for mobile devices first
+- **Breakpoints**:
+  - Mobile: < 768px
+  - Tablet: 768px - 1024px
+  - Desktop: > 1024px
+- **Flexible Grid**: CSS Grid and Flexbox for layout
+- **Adaptive Navigation**: Collapsible menu for mobile
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🌐 SEO Features
+
+- **Meta Tags**: Comprehensive meta tags for search engines
+- **Open Graph**: Social media sharing optimization
+- **Twitter Cards**: Twitter-specific meta tags
+- **Structured Data**: Semantic HTML structure
+- **Performance**: Optimized images and code splitting
+
+## 📞 Contact Information
+
+For inquiries about this website or LD Biro services:
+
+- **Phone**: (555) 123-4567
+- **Email**: info@ldbiro.com
+- **Address**: 123 Business Avenue, Suite 456, Your City, State 12345
+
+## 🤝 Contributing
+
+This is a client project. For updates or modifications, please contact the development team.
+
+## 📄 License
+
+© 2024 LD Biro. All rights reserved.
+
+---
+
+Built with ❤️ using Next.js and Tailwind CSS
