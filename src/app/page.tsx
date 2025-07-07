@@ -46,46 +46,49 @@ export default function HomePage() {
       <nav
         className={`fixed w-full z-50 transition-all duration-300 border-b ${
           isOverLightSection
-            ? "bg-slate-900/80 backdrop-blur-md border-slate-700/50 shadow-lg"
-            : "bg-white/10 backdrop-blur-md border-white/20"
+            ? "bg-slate-100/95 backdrop-blur-md border-slate-300/50 shadow-lg"
+            : "bg-white/40 backdrop-blur-md border-white/30"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <div className="flex items-center">
+              <a
+                href="#"
+                className="flex items-center cursor-pointer focus:outline-none"
+              >
                 <LDBiroLogo
                   width={40}
                   height={40}
                   className={`mr-3 transition-colors duration-300 ${
-                    isOverLightSection ? "text-white" : "text-white"
+                    isOverLightSection ? "text-slate-900" : "text-slate-900"
                   }`}
                 />
                 <div className="flex flex-col">
                   <h1
                     className={`text-xl font-bold transition-colors duration-300 ${
-                      isOverLightSection ? "text-white" : "text-white"
+                      isOverLightSection ? "text-slate-900" : "text-slate-900"
                     }`}
                   >
                     LD Biro
                   </h1>
                   <span
                     className={`text-xs transition-colors duration-300 ${
-                      isOverLightSection ? "text-blue-200" : "text-blue-200"
+                      isOverLightSection ? "text-slate-600" : "text-slate-700"
                     }`}
                   >
                     Knjigovodstvo & Finansije
                   </span>
                 </div>
-              </div>
+              </a>
             </div>
             <div className="hidden md:flex space-x-8">
               <a
                 href="#services"
                 className={`transition-colors duration-300 ${
                   isOverLightSection
-                    ? "text-gray-200 hover:text-blue-300"
-                    : "text-white hover:text-blue-200"
+                    ? "text-slate-700 hover:text-blue-600"
+                    : "text-slate-800 hover:text-blue-600"
                 }`}
               >
                 Usluge
@@ -94,8 +97,8 @@ export default function HomePage() {
                 href="#about"
                 className={`transition-colors duration-300 ${
                   isOverLightSection
-                    ? "text-gray-200 hover:text-blue-300"
-                    : "text-white hover:text-blue-200"
+                    ? "text-slate-700 hover:text-blue-600"
+                    : "text-slate-800 hover:text-blue-600"
                 }`}
               >
                 O nama
@@ -104,16 +107,19 @@ export default function HomePage() {
                 href="#contact"
                 className={`transition-colors duration-300 ${
                   isOverLightSection
-                    ? "text-gray-200 hover:text-blue-300"
-                    : "text-white hover:text-blue-200"
+                    ? "text-slate-700 hover:text-blue-600"
+                    : "text-slate-800 hover:text-blue-600"
                 }`}
               >
                 Kontakt
               </a>
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors">
+            <a
+              href="#contact"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors"
+            >
               Započni saradnju
-            </button>
+            </a>
           </div>
         </div>
       </nav>
@@ -140,12 +146,18 @@ export default function HomePage() {
               gazdinstva i MSP preduzetnike koji traže pouzdanog partnera.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105">
+              <a
+                href="#contact"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105"
+              >
                 Zakaži konsultacije
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 rounded-full text-lg font-semibold transition-all">
+              </a>
+              <a
+                href="#about"
+                className="border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 rounded-full text-lg font-semibold transition-all"
+              >
                 Saznaj više
-              </button>
+              </a>
             </div>
           </div>
 
@@ -178,7 +190,7 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-20 bg-white scroll-mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
@@ -264,7 +276,7 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-slate-50">
+      <section id="about" className="py-20 bg-slate-50 scroll-mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -366,7 +378,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-white scroll-mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
@@ -479,7 +491,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-12">
+      <footer className="bg-slate-200 text-slate-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-2">
@@ -487,7 +499,7 @@ export default function HomePage() {
                 <LDBiroLogo width={32} height={32} className="mr-3" />
                 <h3 className="text-2xl font-bold">LD Biro</h3>
               </div>
-              <p className="text-slate-300 mb-4">
+              <p className="text-slate-600 mb-4">
                 Vaš pouzdani partner za sveobuhvatne usluge knjigovodstva i
                 finansija. Pomažemo preduzećima i poljoprivrednim gazdinstvima
                 da napreduju kroz stručno finansijsko vođenje.
@@ -495,19 +507,19 @@ export default function HomePage() {
               <div className="flex space-x-4">
                 <a
                   href="#"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-500 hover:text-slate-800 transition-colors"
                 >
                   LinkedIn
                 </a>
                 <a
                   href="#"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-500 hover:text-slate-800 transition-colors"
                 >
                   Facebook
                 </a>
                 <a
                   href="#"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-500 hover:text-slate-800 transition-colors"
                 >
                   Instagram
                 </a>
@@ -515,11 +527,11 @@ export default function HomePage() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Osnovne usluge</h4>
-              <ul className="space-y-2 text-slate-300">
+              <ul className="space-y-2 text-slate-600">
                 <li>
                   <a
                     href="#service-0"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Poresko planiranje
                   </a>
@@ -527,7 +539,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-1"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Kompletno knjigovodstvo
                   </a>
@@ -535,7 +547,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-2"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Poljoprivredna gazdinstva
                   </a>
@@ -543,7 +555,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-3"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Finansijsko savetovanje
                   </a>
@@ -551,7 +563,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-4"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Obračun zarada
                   </a>
@@ -560,11 +572,11 @@ export default function HomePage() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Dodatne usluge</h4>
-              <ul className="space-y-2 text-slate-300">
+              <ul className="space-y-2 text-slate-600">
                 <li>
                   <a
                     href="#service-5"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Osnivanje preduzeća
                   </a>
@@ -572,7 +584,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-6"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Revizija i verifikacija
                   </a>
@@ -580,7 +592,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-7"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     PDV i poreske prijave
                   </a>
@@ -588,7 +600,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#service-8"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Finansijski izvještaji
                   </a>
@@ -597,11 +609,11 @@ export default function HomePage() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Navigacija</h4>
-              <ul className="space-y-2 text-slate-300">
+              <ul className="space-y-2 text-slate-600">
                 <li>
                   <a
                     href="#services"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Usluge
                   </a>
@@ -609,7 +621,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#about"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     O nama
                   </a>
@@ -617,7 +629,7 @@ export default function HomePage() {
                 <li>
                   <a
                     href="#contact"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-slate-800 transition-colors"
                   >
                     Kontakt
                   </a>
@@ -625,7 +637,7 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
+          <div className="border-t border-slate-300 mt-8 pt-8 text-center text-slate-500">
             <p>&copy; 2024 LD Biro. Sva prava zadržana.</p>
           </div>
         </div>
