@@ -7,6 +7,69 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [isOverLightSection, setIsOverLightSection] = useState(false);
 
+  // Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    businessType: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  // Form handlers
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage(
+          result.message ||
+            "Poruka je uspešno poslana! Kontaktiraćemo vas uskoro."
+        );
+        setFormData({
+          name: "",
+          email: "",
+          businessType: "",
+          message: "",
+        });
+      } else {
+        setSubmitMessage(
+          result.error || "Greška pri slanju poruke. Molimo pokušajte ponovo."
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitMessage("Greška pri slanju poruke. Molimo pokušajte ponovo.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   useEffect(() => {
     setIsVisible(true);
 
@@ -47,7 +110,7 @@ export default function HomePage() {
         className={`fixed w-full z-50 transition-all duration-300 border-b ${
           isOverLightSection
             ? "bg-slate-100/95 backdrop-blur-md border-slate-300/50 shadow-lg"
-            : "bg-white/40 backdrop-blur-md border-white/30"
+            : "bg-white/90 backdrop-blur-md border-white/40 shadow-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -441,13 +504,17 @@ export default function HomePage() {
               <h3 className="text-2xl font-semibold text-slate-900 mb-6">
                 Pošaljite nam poruku
               </h3>
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     Ime i prezime
                   </label>
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
@@ -457,6 +524,10 @@ export default function HomePage() {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
@@ -464,11 +535,31 @@ export default function HomePage() {
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     Tip biznisa
                   </label>
-                  <select className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option>Poljoprivredno gazdinstvo</option>
-                    <option>Malo i srednje preduzeće</option>
-                    <option>Preduzetnik</option>
-                    <option>Ostalo</option>
+                  <select
+                    name="businessType"
+                    value={formData.businessType}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Izaberite tip biznisa</option>
+                    <option value="Preduzetnik">Preduzetnik</option>
+                    <option value="Društvo sa ograničenom odgovornošću (d.o.o.)">
+                      Društvo sa ograničenom odgovornošću (d.o.o.)
+                    </option>
+                    <option value="Akcionarsko društvo (a.d.)">
+                      Akcionarsko društvo (a.d.)
+                    </option>
+                    <option value="Poljoprivredno gazdinstvo">
+                      Poljoprivredno gazdinstvo
+                    </option>
+                    <option value="Ortačko društvo">Ortačko društvo</option>
+                    <option value="Komanditno društvo">
+                      Komanditno društvo
+                    </option>
+                    <option value="Zadruga">Zadruga</option>
+                    <option value="Javno preduzeće">Javno preduzeće</option>
+                    <option value="Ustanova">Ustanova</option>
+                    <option value="Ostalo">Ostalo</option>
                   </select>
                 </div>
                 <div>
@@ -476,13 +567,38 @@ export default function HomePage() {
                     Poruka
                   </label>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     rows={4}
+                    required
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Opišite vaše potrebe za knjigovodstvenim uslugama..."
                   ></textarea>
                 </div>
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">
-                  Pošaljite poruku
+
+                {submitMessage && (
+                  <div
+                    className={`p-4 rounded-lg ${
+                      submitMessage.includes("uspešno")
+                        ? "bg-green-50 text-green-800"
+                        : "bg-red-50 text-red-800"
+                    }`}
+                  >
+                    {submitMessage}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-3 rounded-lg font-semibold transition-colors ${
+                    isSubmitting
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700 text-white"
+                  }`}
+                >
+                  {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
                 </button>
               </form>
             </div>
