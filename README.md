@@ -65,7 +65,7 @@ A modern, responsive website for LD Biro accounting firm built with Next.js, Rea
 1. **Clone the repository**
 
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/sasabakic/ld-biro-fe.git
    cd ld-biro-fe
    ```
 
