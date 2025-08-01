@@ -1,38 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import LDBiroLogo from "../components/LDBiroLogo";
+import { FormValues, contactValidationSchema } from "../contact/validation";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [isOverLightSection, setIsOverLightSection] = useState(false);
 
-  // Form state
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    businessType: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Submit message state
   const [submitMessage, setSubmitMessage] = useState("");
 
-  // Form handlers
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+  // Form submit handler
+  const handleSubmit = async (
+    values: FormValues,
+    { setSubmitting, resetForm }: FormikHelpers<FormValues>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
     setSubmitMessage("");
 
     try {
@@ -41,7 +25,7 @@ export default function HomePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(values),
       });
 
       const result = await response.json();
@@ -51,12 +35,7 @@ export default function HomePage() {
           result.message ||
             "Poruka je uspešno poslana! Kontaktiraćemo vas uskoro."
         );
-        setFormData({
-          name: "",
-          email: "",
-          businessType: "",
-          message: "",
-        });
+        resetForm();
       } else {
         setSubmitMessage(
           result.error || "Greška pri slanju poruke. Molimo pokušajte ponovo."
@@ -66,7 +45,7 @@ export default function HomePage() {
       console.error("Error:", error);
       setSubmitMessage("Greška pri slanju poruke. Molimo pokušajte ponovo.");
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
   };
 
@@ -504,103 +483,127 @@ export default function HomePage() {
               <h3 className="text-2xl font-semibold text-slate-900 mb-6">
                 Pošaljite nam poruku
               </h3>
-              <form className="space-y-6" onSubmit={handleSubmit}>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Ime i prezime
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Tip biznisa
-                  </label>
-                  <select
-                    name="businessType"
-                    value={formData.businessType}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">Izaberite tip biznisa</option>
-                    <option value="Preduzetnik">Preduzetnik</option>
-                    <option value="Društvo sa ograničenom odgovornošću (d.o.o.)">
-                      Društvo sa ograničenom odgovornošću (d.o.o.)
-                    </option>
-                    <option value="Akcionarsko društvo (a.d.)">
-                      Akcionarsko društvo (a.d.)
-                    </option>
-                    <option value="Poljoprivredno gazdinstvo">
-                      Poljoprivredno gazdinstvo
-                    </option>
-                    <option value="Ortačko društvo">Ortačko društvo</option>
-                    <option value="Komanditno društvo">
-                      Komanditno društvo
-                    </option>
-                    <option value="Zadruga">Zadruga</option>
-                    <option value="Javno preduzeće">Javno preduzeće</option>
-                    <option value="Ustanova">Ustanova</option>
-                    <option value="Ostalo">Ostalo</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Poruka
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={4}
-                    required
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Opišite vaše potrebe za knjigovodstvenim uslugama..."
-                  ></textarea>
-                </div>
+              <Formik
+                initialValues={{
+                  name: "",
+                  email: "",
+                  businessType: "",
+                  message: "",
+                }}
+                validationSchema={contactValidationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ isSubmitting }) => (
+                  <Form className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Ime i prezime
+                      </label>
+                      <Field
+                        type="text"
+                        name="name"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="text-red-600 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Email
+                      </label>
+                      <Field
+                        type="email"
+                        name="email"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-red-600 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Tip biznisa
+                      </label>
+                      <Field
+                        as="select"
+                        name="businessType"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      >
+                        <option value="">Izaberite tip biznisa</option>
+                        <option value="Preduzetnik">Preduzetnik</option>
+                        <option value="Društvo sa ograničenom odgovornošću (d.o.o.)">
+                          Društvo sa ograničenom odgovornošću (d.o.o.)
+                        </option>
+                        <option value="Akcionarsko društvo (a.d.)">
+                          Akcionarsko društvo (a.d.)
+                        </option>
+                        <option value="Poljoprivredno gazdinstvo">
+                          Poljoprivredno gazdinstvo
+                        </option>
+                        <option value="Ortačko društvo">Ortačko društvo</option>
+                        <option value="Komanditno društvo">
+                          Komanditno društvo
+                        </option>
+                        <option value="Zadruga">Zadruga</option>
+                        <option value="Javno preduzeće">Javno preduzeće</option>
+                        <option value="Ustanova">Ustanova</option>
+                        <option value="Ostalo">Ostalo</option>
+                      </Field>
+                      <ErrorMessage
+                        name="businessType"
+                        component="div"
+                        className="text-red-600 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Poruka
+                      </label>
+                      <Field
+                        as="textarea"
+                        name="message"
+                        rows={4}
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Opišite vaše potrebe za knjigovodstvenim uslugama..."
+                      />
+                      <ErrorMessage
+                        name="message"
+                        component="div"
+                        className="text-red-600 text-sm mt-1"
+                      />
+                    </div>
 
-                {submitMessage && (
-                  <div
-                    className={`p-4 rounded-lg ${
-                      submitMessage.includes("uspešno")
-                        ? "bg-green-50 text-green-800"
-                        : "bg-red-50 text-red-800"
-                    }`}
-                  >
-                    {submitMessage}
-                  </div>
+                    {submitMessage && (
+                      <div
+                        className={`p-4 rounded-lg ${
+                          submitMessage.includes("uspešno")
+                            ? "bg-green-50 text-green-800"
+                            : "bg-red-50 text-red-800"
+                        }`}
+                      >
+                        {submitMessage}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`w-full py-3 rounded-lg font-semibold transition-colors ${
+                        isSubmitting
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-blue-600 hover:bg-blue-700 text-white"
+                      }`}
+                    >
+                      {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
+                    </button>
+                  </Form>
                 )}
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full py-3 rounded-lg font-semibold transition-colors ${
-                    isSubmitting
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700 text-white"
-                  }`}
-                >
-                  {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
-                </button>
-              </form>
+              </Formik>
             </div>
           </div>
         </div>
@@ -620,26 +623,6 @@ export default function HomePage() {
                 finansija. Pomažemo preduzećima i poljoprivrednim gazdinstvima
                 da napreduju kroz stručno finansijsko vođenje.
               </p>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="text-slate-500 hover:text-slate-800 transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-500 hover:text-slate-800 transition-colors"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-500 hover:text-slate-800 transition-colors"
-                >
-                  Instagram
-                </a>
-              </div>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Osnovne usluge</h4>
