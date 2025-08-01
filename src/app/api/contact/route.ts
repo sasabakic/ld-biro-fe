@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Send email using Resend
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "LD Biro Kontakt <kontakt@resend.dev>",
       to: [process.env.CONTACT_EMAIL],
       replyTo: email, // Allow direct reply to the person who sent the message
