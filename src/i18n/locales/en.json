@@ -1,0 +1,172 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact",
+    "startCooperation": "Start Cooperation"
+  },
+  "hero": {
+    "title": "Your Reliable Partner for",
+    "titleHighlight": "Bookkeeping",
+    "description": "LD Biro provides professional bookkeeping services, tax planning, and financial consulting. We specialize in agricultural farms and SME entrepreneurs looking for a reliable partner.",
+    "scheduleConsultation": "Schedule Consultation",
+    "learnMore": "Learn More"
+  },
+  "stats": {
+    "yearsExperience": "Years of Team Experience",
+    "agriculturalFarms": "Agricultural Farms",
+    "satisfiedClients": "Satisfied Clients",
+    "support": "Support"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Complete solutions for bookkeeping and finance, tailored to your business needs",
+    "items": [
+      {
+        "title": "Tax Planning and Preparation",
+        "description": "Strategic tax planning and precise preparation to minimize your tax obligations while ensuring full regulatory compliance."
+      },
+      {
+        "title": "Complete Bookkeeping",
+        "description": "Comprehensive bookkeeping services to maintain accurate and up-to-date financial records for your business."
+      },
+      {
+        "title": "Agricultural Farms",
+        "description": "We specialize in bookkeeping for agricultural farms - subsidies, incentives, specific regulations."
+      },
+      {
+        "title": "Financial Consulting",
+        "description": "Expert financial advice to help you make informed decisions and grow your business."
+      },
+      {
+        "title": "Payroll Processing",
+        "description": "Complete payroll processing, tax withholdings, and labor law compliance management."
+      },
+      {
+        "title": "Company Formation",
+        "description": "Assistance with choosing organizational structure, registration, and establishing compliance systems."
+      },
+      {
+        "title": "Audit and Verification",
+        "description": "Professional audit services ensuring accuracy and regulatory compliance."
+      },
+      {
+        "title": "VAT and Tax Returns",
+        "description": "Preparation and submission of all types of tax returns, including VAT, corporate tax, and personal income tax."
+      },
+      {
+        "title": "Financial Reports",
+        "description": "Creating detailed financial reports that provide insight into the health of your business."
+      }
+    ]
+  },
+  "about": {
+    "title": "About LD Biro",
+    "paragraph1": "LD Biro was founded in 2021 with a clear vision - providing top-quality bookkeeping services based on decades of experience. Our senior accountants have over 30 years of practical experience in the profession, which guarantees invaluable knowledge and expertise.",
+    "paragraph2": "Although we are a young company, our team of certified professionals combines traditional bookkeeping knowledge with modern technologies to provide efficient, accurate, and comprehensive financial solutions. We are especially proud of our long-standing partnership with agricultural farms that our experts have nurtured for decades.",
+    "features": [
+      "Senior accountants with 30+ years of experience",
+      "Modern company founded in 2021",
+      "Specialization in agriculture",
+      "Advanced technological solutions",
+      "Personalized service for clients"
+    ],
+    "whyChoose": {
+      "title": "Why Choose LD Biro?",
+      "items": [
+        {
+          "title": "Agriculture Specialization",
+          "description": "Deep understanding of agricultural farm specifics, subsidies, and incentives."
+        },
+        {
+          "title": "30+ Years of Professional Experience",
+          "description": "Our senior experts combine three decades of practical experience with a modern approach."
+        },
+        {
+          "title": "State-of-the-Art Technology",
+          "description": "Modern tools and software for accurate and efficient service."
+        },
+        {
+          "title": "Personalized Approach",
+          "description": "Custom solutions that match the unique needs of your business."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Ready to take control of your finances? Contact us today for a consultation.",
+    "info": {
+      "title": "Contact Information",
+      "address": {
+        "label": "Address",
+        "line1": "Rade Končara 10",
+        "line2": "25000 Sombor"
+      },
+      "phone": {
+        "label": "Phone",
+        "value": "025/123-4567"
+      },
+      "email": {
+        "label": "Email",
+        "value": "info@ldbiro.rs"
+      },
+      "workingHours": {
+        "label": "Working Hours",
+        "weekdays": "Monday - Friday: 09:00 - 18:00",
+        "saturday": "Saturday: 10:00 - 16:00"
+      }
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "name": "Full Name",
+      "email": "Email",
+      "businessType": {
+        "label": "Business Type",
+        "placeholder": "Select business type",
+        "options": {
+          "entrepreneur": "Entrepreneur",
+          "llc": "Limited Liability Company (LLC)",
+          "jsc": "Joint Stock Company (JSC)",
+          "farm": "Agricultural Farm",
+          "partnership": "Partnership",
+          "limitedPartnership": "Limited Partnership",
+          "cooperative": "Cooperative",
+          "publicEnterprise": "Public Enterprise",
+          "institution": "Institution",
+          "other": "Other"
+        }
+      },
+      "message": "Message",
+      "messagePlaceholder": "Describe your bookkeeping service needs...",
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    },
+    "messages": {
+      "success": "Message sent successfully! We will contact you soon.",
+      "error": "Error sending message. Please try again."
+    }
+  },
+  "footer": {
+    "description": "Your reliable partner for comprehensive bookkeeping and financial services. We help businesses and agricultural farms thrive through expert financial guidance.",
+    "basicServices": "Basic Services",
+    "additionalServices": "Additional Services",
+    "navigation": "Navigation",
+    "serviceLinks": {
+      "taxPlanning": "Tax Planning",
+      "completeBookkeeping": "Complete Bookkeeping",
+      "agriculturalFarms": "Agricultural Farms",
+      "financialConsulting": "Financial Consulting",
+      "payroll": "Payroll Processing",
+      "companyFormation": "Company Formation",
+      "audit": "Audit and Verification",
+      "vatTax": "VAT and Tax Returns",
+      "financialReports": "Financial Reports"
+    },
+    "copyright": "© 2024 LD Biro. All rights reserved."
+  },
+  "common": {
+    "companyName": "LD Biro",
+    "tagline": "Bookkeeping & Finance"
+  }
+}

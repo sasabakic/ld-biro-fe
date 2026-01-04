@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
-import LDBiroLogo from "../components/LDBiroLogo";
-import { FormValues, contactValidationSchema } from "../contact/validation";
+import LDBiroLogo from "../../components/LDBiroLogo";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { FormValues, contactValidationSchema } from "../../contact/validation";
+import { useTranslations } from "../../i18n";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [isOverLightSection, setIsOverLightSection] = useState(false);
+  const t = useTranslations();
 
   // Submit message state
   const [submitMessage, setSubmitMessage] = useState("");
@@ -31,19 +34,14 @@ export default function HomePage() {
       const result = await response.json();
 
       if (response.ok) {
-        setSubmitMessage(
-          result.message ||
-            "Poruka je uspešno poslana! Kontaktiraćemo vas uskoro."
-        );
+        setSubmitMessage(result.message || t.contact.messages.success);
         resetForm();
       } else {
-        setSubmitMessage(
-          result.error || "Greška pri slanju poruke. Molimo pokušajte ponovo."
-        );
+        setSubmitMessage(result.error || t.contact.messages.error);
       }
     } catch (error) {
       console.error("Error:", error);
-      setSubmitMessage("Greška pri slanju poruke. Molimo pokušajte ponovo.");
+      setSubmitMessage(t.contact.messages.error);
     } finally {
       setSubmitting(false);
     }
@@ -82,6 +80,38 @@ export default function HomePage() {
     return () => observer.disconnect();
   }, []);
 
+  // Business type options with keys for translation
+  const businessTypeOptions = [
+    {
+      key: "entrepreneur",
+      value: t.contact.form.businessType.options.entrepreneur,
+    },
+    { key: "llc", value: t.contact.form.businessType.options.llc },
+    { key: "jsc", value: t.contact.form.businessType.options.jsc },
+    { key: "farm", value: t.contact.form.businessType.options.farm },
+    {
+      key: "partnership",
+      value: t.contact.form.businessType.options.partnership,
+    },
+    {
+      key: "limitedPartnership",
+      value: t.contact.form.businessType.options.limitedPartnership,
+    },
+    {
+      key: "cooperative",
+      value: t.contact.form.businessType.options.cooperative,
+    },
+    {
+      key: "publicEnterprise",
+      value: t.contact.form.businessType.options.publicEnterprise,
+    },
+    {
+      key: "institution",
+      value: t.contact.form.businessType.options.institution,
+    },
+    { key: "other", value: t.contact.form.businessType.options.other },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       {/* Navigation */}
@@ -112,19 +142,19 @@ export default function HomePage() {
                       isOverLightSection ? "text-slate-900" : "text-slate-900"
                     }`}
                   >
-                    LD Biro
+                    {t.common.companyName}
                   </h1>
                   <span
                     className={`text-xs transition-colors duration-300 ${
                       isOverLightSection ? "text-slate-600" : "text-slate-700"
                     }`}
                   >
-                    Knjigovodstvo & Finansije
+                    {t.common.tagline}
                   </span>
                 </div>
               </a>
             </div>
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               <a
                 href="#services"
                 className={`transition-colors duration-300 ${
@@ -133,7 +163,7 @@ export default function HomePage() {
                     : "text-slate-800 hover:text-blue-600"
                 }`}
               >
-                Usluge
+                {t.nav.services}
               </a>
               <a
                 href="#about"
@@ -143,7 +173,7 @@ export default function HomePage() {
                     : "text-slate-800 hover:text-blue-600"
                 }`}
               >
-                O nama
+                {t.nav.about}
               </a>
               <a
                 href="#contact"
@@ -153,15 +183,24 @@ export default function HomePage() {
                     : "text-slate-800 hover:text-blue-600"
                 }`}
               >
-                Kontakt
+                {t.nav.contact}
               </a>
             </div>
-            <a
-              href="#contact"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors"
-            >
-              Započni saradnju
-            </a>
+            <div className="flex items-center gap-4">
+              <a
+                href="#contact"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors"
+              >
+                {t.nav.startCooperation}
+              </a>
+              <LanguageSwitcher
+                className={`${
+                  isOverLightSection
+                    ? "border-slate-400 text-slate-700 hover:bg-slate-200"
+                    : "border-slate-300 text-slate-800 hover:bg-slate-100"
+                }`}
+              />
+            </div>
           </div>
         </div>
       </nav>
@@ -177,28 +216,26 @@ export default function HomePage() {
             }`}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-relaxed">
-              Vaš pouzdan partner za
+              {t.hero.title}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block mt-2 pb-2">
-                Knjigovodstvo
+                {t.hero.titleHighlight}
               </span>
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              LD Biro pruža stručne usluge knjigovodstva, poresko planiranje i
-              finansijsko savetovanje. Specijalizovani smo za poljoprivredna
-              gazdinstva i MSP preduzetnike koji traže pouzdanog partnera.
+              {t.hero.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contact"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105"
               >
-                Zakaži konsultacije
+                {t.hero.scheduleConsultation}
               </a>
               <a
                 href="#about"
                 className="border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 rounded-full text-lg font-semibold transition-all"
               >
-                Saznaj više
+                {t.hero.learnMore}
               </a>
             </div>
           </div>
@@ -213,19 +250,19 @@ export default function HomePage() {
           >
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">30+</div>
-              <div className="text-blue-200">Godina iskustva tima</div>
+              <div className="text-blue-200">{t.stats.yearsExperience}</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">50+</div>
-              <div className="text-blue-200">Poljoprivrednih gazdinstava</div>
+              <div className="text-4xl font-bold text-white mb-2">30+</div>
+              <div className="text-blue-200">{t.stats.agriculturalFarms}</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">100+</div>
-              <div className="text-blue-200">Zadovoljnih klijenata</div>
+              <div className="text-blue-200">{t.stats.satisfiedClients}</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-white mb-2">24/7</div>
-              <div className="text-blue-200">Podrška</div>
+              <div className="text-blue-200">{t.stats.support}</div>
             </div>
           </div>
         </div>
@@ -236,83 +273,40 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Naše usluge
+              {t.services.title}
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Kompletna rešenja za knjigovodstvo i finansije, prilagođena
-              potrebama vašeg biznisa
+              {t.services.subtitle}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Poresko planiranje i priprema",
-                description:
-                  "Strateško poresko planiranje i precizna priprema da minimizujemo vaše poreske obaveze uz punu usklađenost sa propisima.",
-                icon: "📊",
-              },
-              {
-                title: "Kompletno knjigovodstvo",
-                description:
-                  "Sveobuhvatne usluge knjigovodstva za održavanje tačnih i ažurnih finansijskih evidencija vašeg preduzeća.",
-                icon: "📚",
-              },
-              {
-                title: "Poljoprivredna gazdinstva",
-                description:
-                  "Specijalizovani smo za knjigovodstvo poljoprivrednih gazdinstava - subvencije, podsticaji, specifični propisi.",
-                icon: "🌾",
-              },
-              {
-                title: "Finansijsko savetovanje",
-                description:
-                  "Stručni finansijski saveti koji vam pomažu da donosite informisane odluke i razvijate svoj biznis.",
-                icon: "💼",
-              },
-              {
-                title: "Obračun zarada",
-                description:
-                  "Kompletno procesiranje plata, poreskih obustava i upravljanje usklađenošću sa radnim zakonodavstvom.",
-                icon: "💰",
-              },
-              {
-                title: "Osnivanje preduzeća",
-                description:
-                  "Pomoć pri izboru organizacione strukture, registraciji i uspostavljanju sistema usklađenosti.",
-                icon: "🏢",
-              },
-              {
-                title: "Revizija i verifikacija",
-                description:
-                  "Profesionalne usluge revizije koje osiguravaju tačnost i usklađenost sa propisima.",
-                icon: "🔍",
-              },
-              {
-                title: "PDV i poreske prijave",
-                description:
-                  "Priprema i podnošenje svih vrsta poreskih prijava, uključujući PDV, porez na dobit i lični dohodak.",
-                icon: "📄",
-              },
-              {
-                title: "Finansijski izvještaji",
-                description:
-                  "Kreiranje detaljnih finansijskih izvještaja koji pružaju uvid u zdravlje vašeg biznisa.",
-                icon: "📈",
-              },
-            ].map((service, index) => (
-              <div
-                key={index}
-                id={`service-${index}`}
-                className="bg-slate-50 p-8 rounded-2xl hover:shadow-lg transition-shadow group hover:bg-blue-50 scroll-mt-24"
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-blue-800">
-                  {service.title}
-                </h3>
-                <p className="text-slate-600">{service.description}</p>
-              </div>
-            ))}
+            {t.services.items.map((service, index) => {
+              const icons = [
+                "📊",
+                "📚",
+                "🌾",
+                "💼",
+                "💰",
+                "🏢",
+                "🔍",
+                "📄",
+                "📈",
+              ];
+              return (
+                <div
+                  key={index}
+                  id={`service-${index}`}
+                  className="bg-slate-50 p-8 rounded-2xl hover:shadow-lg transition-shadow group hover:bg-blue-50 scroll-mt-24"
+                >
+                  <div className="text-4xl mb-4">{icons[index]}</div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-blue-800">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600">{service.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -323,96 +317,34 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold text-slate-900 mb-6">
-                O LD Biro
+                {t.about.title}
               </h2>
               <p className="text-lg text-slate-600 mb-6">
-                LD Biro je osnovan 2021. godine sa jasnom vizijom - pružanje
-                vrhunskih usluga knjigovodstva baziranih na decenijskom
-                iskustvu. Naši senior knjigovođe imaju preko 30 godina
-                praktičnog iskustva u struci, što garantuje neprocenjivo znanje
-                i stručnost.
+                {t.about.paragraph1}
               </p>
               <p className="text-lg text-slate-600 mb-8">
-                Iako smo mlada kompanija, naš tim sertifikovanih stručnjaka
-                kombinuje tradicionalno knjigovodstveno znanje sa modernim
-                tehnologijama kako bi pružio efikasna, tačna i sveobuhvatna
-                finansijska rešenja. Posebno smo ponosni na naše dugogodišnje
-                partnerstvo sa poljoprivrednim gazdinstvima koje naši stručnjaci
-                neguju decenijama.
+                {t.about.paragraph2}
               </p>
               <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                  <span className="text-slate-700">
-                    Senior knjigovođe sa 30+ godina iskustva
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                  <span className="text-slate-700">
-                    Moderna kompanija osnovana 2021. godine
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                  <span className="text-slate-700">
-                    Specijalizacija za poljoprivredu
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                  <span className="text-slate-700">
-                    Napredna tehnološka rešenja
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                  <span className="text-slate-700">
-                    Personalizovana usluga za klijente
-                  </span>
-                </div>
+                {t.about.features.map((feature, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                    <span className="text-slate-700">{feature}</span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 rounded-2xl text-white">
               <h3 className="text-2xl font-bold mb-6">
-                Zašto izabrati LD Biro?
+                {t.about.whyChoose.title}
               </h3>
               <div className="space-y-6">
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">
-                    Specijalizacija za poljoprivredu
-                  </h4>
-                  <p className="text-blue-100">
-                    Duboko poznavanje specifičnosti poljoprivrednih gazdinstava,
-                    subvencija i podsticaja.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">
-                    30+ godina iskustva u struci
-                  </h4>
-                  <p className="text-blue-100">
-                    Naši senior stručnjaci kombinuju tri decenije praktičnog
-                    iskustva sa modernim pristupom.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">
-                    Najsavremenija tehnologija
-                  </h4>
-                  <p className="text-blue-100">
-                    Moderni alati i softver za tačnu i efikasnu uslugu.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">
-                    Personalizovan pristup
-                  </h4>
-                  <p className="text-blue-100">
-                    Rešenja po meri koja odgovaraju jedinstvenim potrebama vašeg
-                    biznisa.
-                  </p>
-                </div>
+                {t.about.whyChoose.items.map((item, index) => (
+                  <div key={index}>
+                    <h4 className="text-lg font-semibold mb-2">{item.title}</h4>
+                    <p className="text-blue-100">{item.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -424,55 +356,62 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Stupite u kontakt
+              {t.contact.title}
             </h2>
-            <p className="text-xl text-slate-600">
-              Spremni da preuzmete kontrolu nad svojim finansijama?
-              Kontaktirajte nas danas za konsultacije.
-            </p>
+            <p className="text-xl text-slate-600">{t.contact.subtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-6">
-                Kontakt informacije
+                {t.contact.info.title}
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="text-2xl mr-4">📍</div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">Adresa</h4>
+                    <h4 className="font-semibold text-slate-900">
+                      {t.contact.info.address.label}
+                    </h4>
                     <p className="text-slate-600">
-                      Rade Končara 10
+                      {t.contact.info.address.line1}
                       <br />
-                      25000 Sombor
+                      {t.contact.info.address.line2}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="text-2xl mr-4">📞</div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">Telefon</h4>
-                    <p className="text-slate-600">025/123-4567</p>
+                    <h4 className="font-semibold text-slate-900">
+                      {t.contact.info.phone.label}
+                    </h4>
+                    <p className="text-slate-600">
+                      {t.contact.info.phone.value}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="text-2xl mr-4">✉️</div>
                   <div>
-                    <h4 className="font-semibold text-slate-900">Email</h4>
-                    <p className="text-slate-600">info@ldbiro.rs</p>
+                    <h4 className="font-semibold text-slate-900">
+                      {t.contact.info.email.label}
+                    </h4>
+                    <p className="text-slate-600">
+                      {t.contact.info.email.value}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="text-2xl mr-4">⏰</div>
                   <div>
                     <h4 className="font-semibold text-slate-900">
-                      Radno vreme
+                      {t.contact.info.workingHours.label}
                     </h4>
                     <p className="text-slate-600">
-                      Ponedeljak - Petak: 09:00 - 18:00
+                      {t.contact.info.workingHours.weekdays}
                       <br />
-                      Subota: 10:00 - 16:00
+                      {t.contact.info.workingHours.saturday}
                     </p>
                   </div>
                 </div>
@@ -481,7 +420,7 @@ export default function HomePage() {
 
             <div className="bg-slate-50 p-8 rounded-2xl">
               <h3 className="text-2xl font-semibold text-slate-900 mb-6">
-                Pošaljite nam poruku
+                {t.contact.form.title}
               </h3>
               <Formik
                 initialValues={{
@@ -497,7 +436,7 @@ export default function HomePage() {
                   <Form className="space-y-6">
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Ime i prezime
+                        {t.contact.form.name}
                       </label>
                       <Field
                         type="text"
@@ -512,7 +451,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Email
+                        {t.contact.form.email}
                       </label>
                       <Field
                         type="email"
@@ -527,32 +466,21 @@ export default function HomePage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Tip biznisa
+                        {t.contact.form.businessType.label}
                       </label>
                       <Field
                         as="select"
                         name="businessType"
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
-                        <option value="">Izaberite tip biznisa</option>
-                        <option value="Preduzetnik">Preduzetnik</option>
-                        <option value="Društvo sa ograničenom odgovornošću (d.o.o.)">
-                          Društvo sa ograničenom odgovornošću (d.o.o.)
+                        <option value="">
+                          {t.contact.form.businessType.placeholder}
                         </option>
-                        <option value="Akcionarsko društvo (a.d.)">
-                          Akcionarsko društvo (a.d.)
-                        </option>
-                        <option value="Poljoprivredno gazdinstvo">
-                          Poljoprivredno gazdinstvo
-                        </option>
-                        <option value="Ortačko društvo">Ortačko društvo</option>
-                        <option value="Komanditno društvo">
-                          Komanditno društvo
-                        </option>
-                        <option value="Zadruga">Zadruga</option>
-                        <option value="Javno preduzeće">Javno preduzeće</option>
-                        <option value="Ustanova">Ustanova</option>
-                        <option value="Ostalo">Ostalo</option>
+                        {businessTypeOptions.map((option) => (
+                          <option key={option.key} value={option.value}>
+                            {option.value}
+                          </option>
+                        ))}
                       </Field>
                       <ErrorMessage
                         name="businessType"
@@ -562,14 +490,14 @@ export default function HomePage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Poruka
+                        {t.contact.form.message}
                       </label>
                       <Field
                         as="textarea"
                         name="message"
                         rows={4}
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Opišite vaše potrebe za knjigovodstvenim uslugama..."
+                        placeholder={t.contact.form.messagePlaceholder}
                       />
                       <ErrorMessage
                         name="message"
@@ -581,7 +509,7 @@ export default function HomePage() {
                     {submitMessage && (
                       <div
                         className={`p-4 rounded-lg ${
-                          submitMessage.includes("uspešno")
+                          submitMessage === t.contact.messages.success
                             ? "bg-green-50 text-green-800"
                             : "bg-red-50 text-red-800"
                         }`}
@@ -599,7 +527,9 @@ export default function HomePage() {
                           : "bg-blue-600 hover:bg-blue-700 text-white"
                       }`}
                     >
-                      {isSubmitting ? "Šalje se..." : "Pošaljite poruku"}
+                      {isSubmitting
+                        ? t.contact.form.submitting
+                        : t.contact.form.submit}
                     </button>
                   </Form>
                 )}
@@ -616,23 +546,21 @@ export default function HomePage() {
             <div className="md:col-span-2">
               <div className="flex items-center mb-4">
                 <LDBiroLogo width={32} height={32} className="mr-3" />
-                <h3 className="text-2xl font-bold">LD Biro</h3>
+                <h3 className="text-2xl font-bold">{t.common.companyName}</h3>
               </div>
-              <p className="text-slate-600 mb-4">
-                Vaš pouzdani partner za sveobuhvatne usluge knjigovodstva i
-                finansija. Pomažemo preduzećima i poljoprivrednim gazdinstvima
-                da napreduju kroz stručno finansijsko vođenje.
-              </p>
+              <p className="text-slate-600 mb-4">{t.footer.description}</p>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Osnovne usluge</h4>
+              <h4 className="text-lg font-semibold mb-4">
+                {t.footer.basicServices}
+              </h4>
               <ul className="space-y-2 text-slate-600">
                 <li>
                   <a
                     href="#service-0"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Poresko planiranje
+                    {t.footer.serviceLinks.taxPlanning}
                   </a>
                 </li>
                 <li>
@@ -640,7 +568,7 @@ export default function HomePage() {
                     href="#service-1"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Kompletno knjigovodstvo
+                    {t.footer.serviceLinks.completeBookkeeping}
                   </a>
                 </li>
                 <li>
@@ -648,7 +576,7 @@ export default function HomePage() {
                     href="#service-2"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Poljoprivredna gazdinstva
+                    {t.footer.serviceLinks.agriculturalFarms}
                   </a>
                 </li>
                 <li>
@@ -656,7 +584,7 @@ export default function HomePage() {
                     href="#service-3"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Finansijsko savetovanje
+                    {t.footer.serviceLinks.financialConsulting}
                   </a>
                 </li>
                 <li>
@@ -664,20 +592,22 @@ export default function HomePage() {
                     href="#service-4"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Obračun zarada
+                    {t.footer.serviceLinks.payroll}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Dodatne usluge</h4>
+              <h4 className="text-lg font-semibold mb-4">
+                {t.footer.additionalServices}
+              </h4>
               <ul className="space-y-2 text-slate-600">
                 <li>
                   <a
                     href="#service-5"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Osnivanje preduzeća
+                    {t.footer.serviceLinks.companyFormation}
                   </a>
                 </li>
                 <li>
@@ -685,7 +615,7 @@ export default function HomePage() {
                     href="#service-6"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Revizija i verifikacija
+                    {t.footer.serviceLinks.audit}
                   </a>
                 </li>
                 <li>
@@ -693,7 +623,7 @@ export default function HomePage() {
                     href="#service-7"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    PDV i poreske prijave
+                    {t.footer.serviceLinks.vatTax}
                   </a>
                 </li>
                 <li>
@@ -701,20 +631,22 @@ export default function HomePage() {
                     href="#service-8"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Finansijski izvještaji
+                    {t.footer.serviceLinks.financialReports}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Navigacija</h4>
+              <h4 className="text-lg font-semibold mb-4">
+                {t.footer.navigation}
+              </h4>
               <ul className="space-y-2 text-slate-600">
                 <li>
                   <a
                     href="#services"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Usluge
+                    {t.nav.services}
                   </a>
                 </li>
                 <li>
@@ -722,7 +654,7 @@ export default function HomePage() {
                     href="#about"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    O nama
+                    {t.nav.about}
                   </a>
                 </li>
                 <li>
@@ -730,14 +662,14 @@ export default function HomePage() {
                     href="#contact"
                     className="hover:text-slate-800 transition-colors"
                   >
-                    Kontakt
+                    {t.nav.contact}
                   </a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-slate-300 mt-8 pt-8 text-center text-slate-500">
-            <p>&copy; 2024 LD Biro. Sva prava zadržana.</p>
+            <p>{t.footer.copyright}</p>
           </div>
         </div>
       </footer>

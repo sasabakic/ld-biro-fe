@@ -1,0 +1,172 @@
+{
+  "nav": {
+    "services": "Usluge",
+    "about": "O nama",
+    "contact": "Kontakt",
+    "startCooperation": "Započni saradnju"
+  },
+  "hero": {
+    "title": "Vaš pouzdan partner za",
+    "titleHighlight": "Knjigovodstvo",
+    "description": "LD Biro pruža stručne usluge knjigovodstva, poresko planiranje i finansijsko savetovanje. Specijalizovani smo za poljoprivredna gazdinstva i MSP preduzetnike koji traže pouzdanog partnera.",
+    "scheduleConsultation": "Zakaži konsultacije",
+    "learnMore": "Saznaj više"
+  },
+  "stats": {
+    "yearsExperience": "Godina iskustva tima",
+    "agriculturalFarms": "Poljoprivrednih gazdinstava",
+    "satisfiedClients": "Zadovoljnih klijenata",
+    "support": "Podrška"
+  },
+  "services": {
+    "title": "Naše usluge",
+    "subtitle": "Kompletna rešenja za knjigovodstvo i finansije, prilagođena potrebama vašeg biznisa",
+    "items": [
+      {
+        "title": "Poresko planiranje i priprema",
+        "description": "Strateško poresko planiranje i precizna priprema da minimizujemo vaše poreske obaveze uz punu usklađenost sa propisima."
+      },
+      {
+        "title": "Kompletno knjigovodstvo",
+        "description": "Sveobuhvatne usluge knjigovodstva za održavanje tačnih i ažurnih finansijskih evidencija vašeg preduzeća."
+      },
+      {
+        "title": "Poljoprivredna gazdinstva",
+        "description": "Specijalizovani smo za knjigovodstvo poljoprivrednih gazdinstava - subvencije, podsticaji, specifični propisi."
+      },
+      {
+        "title": "Finansijsko savetovanje",
+        "description": "Stručni finansijski saveti koji vam pomažu da donosite informisane odluke i razvijate svoj biznis."
+      },
+      {
+        "title": "Obračun zarada",
+        "description": "Kompletno procesiranje plata, poreskih obustava i upravljanje usklađenošću sa radnim zakonodavstvom."
+      },
+      {
+        "title": "Osnivanje preduzeća",
+        "description": "Pomoć pri izboru organizacione strukture, registraciji i uspostavljanju sistema usklađenosti."
+      },
+      {
+        "title": "Revizija i verifikacija",
+        "description": "Profesionalne usluge revizije koje osiguravaju tačnost i usklađenost sa propisima."
+      },
+      {
+        "title": "PDV i poreske prijave",
+        "description": "Priprema i podnošenje svih vrsta poreskih prijava, uključujući PDV, porez na dobit i lični dohodak."
+      },
+      {
+        "title": "Finansijski izvještaji",
+        "description": "Kreiranje detaljnih finansijskih izvještaja koji pružaju uvid u zdravlje vašeg biznisa."
+      }
+    ]
+  },
+  "about": {
+    "title": "O LD Biro",
+    "paragraph1": "LD Biro je osnovan 2021. godine sa jasnom vizijom - pružanje vrhunskih usluga knjigovodstva baziranih na decenijskom iskustvu. Naši senior knjigovođe imaju preko 30 godina praktičnog iskustva u struci, što garantuje neprocenjivo znanje i stručnost.",
+    "paragraph2": "Iako smo mlada kompanija, naš tim sertifikovanih stručnjaka kombinuje tradicionalno knjigovodstveno znanje sa modernim tehnologijama kako bi pružio efikasna, tačna i sveobuhvatna finansijska rešenja. Posebno smo ponosni na naše dugogodišnje partnerstvo sa poljoprivrednim gazdinstvima koje naši stručnjaci neguju decenijama.",
+    "features": [
+      "Senior knjigovođe sa 30+ godina iskustva",
+      "Moderna kompanija osnovana 2021. godine",
+      "Specijalizacija za poljoprivredu",
+      "Napredna tehnološka rešenja",
+      "Personalizovana usluga za klijente"
+    ],
+    "whyChoose": {
+      "title": "Zašto izabrati LD Biro?",
+      "items": [
+        {
+          "title": "Specijalizacija za poljoprivredu",
+          "description": "Duboko poznavanje specifičnosti poljoprivrednih gazdinstava, subvencija i podsticaja."
+        },
+        {
+          "title": "30+ godina iskustva u struci",
+          "description": "Naši senior stručnjaci kombinuju tri decenije praktičnog iskustva sa modernim pristupom."
+        },
+        {
+          "title": "Najsavremenija tehnologija",
+          "description": "Moderni alati i softver za tačnu i efikasnu uslugu."
+        },
+        {
+          "title": "Personalizovan pristup",
+          "description": "Rešenja po meri koja odgovaraju jedinstvenim potrebama vašeg biznisa."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Stupite u kontakt",
+    "subtitle": "Spremni da preuzmete kontrolu nad svojim finansijama? Kontaktirajte nas danas za konsultacije.",
+    "info": {
+      "title": "Kontakt informacije",
+      "address": {
+        "label": "Adresa",
+        "line1": "Rade Končara 10",
+        "line2": "25000 Sombor"
+      },
+      "phone": {
+        "label": "Telefon",
+        "value": "025/123-4567"
+      },
+      "email": {
+        "label": "Email",
+        "value": "info@ldbiro.rs"
+      },
+      "workingHours": {
+        "label": "Radno vreme",
+        "weekdays": "Ponedeljak - Petak: 09:00 - 18:00",
+        "saturday": "Subota: 10:00 - 16:00"
+      }
+    },
+    "form": {
+      "title": "Pošaljite nam poruku",
+      "name": "Ime i prezime",
+      "email": "Email",
+      "businessType": {
+        "label": "Tip biznisa",
+        "placeholder": "Izaberite tip biznisa",
+        "options": {
+          "entrepreneur": "Preduzetnik",
+          "llc": "Društvo sa ograničenom odgovornošću (d.o.o.)",
+          "jsc": "Akcionarsko društvo (a.d.)",
+          "farm": "Poljoprivredno gazdinstvo",
+          "partnership": "Ortačko društvo",
+          "limitedPartnership": "Komanditno društvo",
+          "cooperative": "Zadruga",
+          "publicEnterprise": "Javno preduzeće",
+          "institution": "Ustanova",
+          "other": "Ostalo"
+        }
+      },
+      "message": "Poruka",
+      "messagePlaceholder": "Opišite vaše potrebe za knjigovodstvenim uslugama...",
+      "submit": "Pošaljite poruku",
+      "submitting": "Šalje se..."
+    },
+    "messages": {
+      "success": "Poruka je uspešno poslana! Kontaktiraćemo vas uskoro.",
+      "error": "Greška pri slanju poruke. Molimo pokušajte ponovo."
+    }
+  },
+  "footer": {
+    "description": "Vaš pouzdani partner za sveobuhvatne usluge knjigovodstva i finansija. Pomažemo preduzećima i poljoprivrednim gazdinstvima da napreduju kroz stručno finansijsko vođenje.",
+    "basicServices": "Osnovne usluge",
+    "additionalServices": "Dodatne usluge",
+    "navigation": "Navigacija",
+    "serviceLinks": {
+      "taxPlanning": "Poresko planiranje",
+      "completeBookkeeping": "Kompletno knjigovodstvo",
+      "agriculturalFarms": "Poljoprivredna gazdinstva",
+      "financialConsulting": "Finansijsko savetovanje",
+      "payroll": "Obračun zarada",
+      "companyFormation": "Osnivanje preduzeća",
+      "audit": "Revizija i verifikacija",
+      "vatTax": "PDV i poreske prijave",
+      "financialReports": "Finansijski izvještaji"
+    },
+    "copyright": "© 2024 LD Biro. Sva prava zadržana."
+  },
+  "common": {
+    "companyName": "LD Biro",
+    "tagline": "Knjigovodstvo & Finansije"
+  }
+}
