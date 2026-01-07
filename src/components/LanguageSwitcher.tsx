@@ -29,7 +29,7 @@ export default function LanguageSwitcher({
   return (
     <Link
       href={getTargetPath()}
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all hover:scale-105 ${className}`}
+      className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors hover:bg-black/5 focus:outline-none ${className}`}
       aria-label={locale === "sr" ? "Switch to English" : "Prebaci na srpski"}
     >
       <span className="text-sm font-medium">

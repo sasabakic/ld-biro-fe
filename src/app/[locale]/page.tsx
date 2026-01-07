@@ -157,7 +157,7 @@ export default function HomePage() {
             <div className="hidden md:flex items-center space-x-8">
               <a
                 href="#services"
-                className={`transition-colors duration-300 ${
+                className={`transition-colors duration-300 focus:outline-none ${
                   isOverLightSection
                     ? "text-slate-700 hover:text-blue-600"
                     : "text-slate-800 hover:text-blue-600"
@@ -167,7 +167,7 @@ export default function HomePage() {
               </a>
               <a
                 href="#about"
-                className={`transition-colors duration-300 ${
+                className={`transition-colors duration-300 focus:outline-none ${
                   isOverLightSection
                     ? "text-slate-700 hover:text-blue-600"
                     : "text-slate-800 hover:text-blue-600"
@@ -177,7 +177,7 @@ export default function HomePage() {
               </a>
               <a
                 href="#contact"
-                className={`transition-colors duration-300 ${
+                className={`transition-colors duration-300 focus:outline-none ${
                   isOverLightSection
                     ? "text-slate-700 hover:text-blue-600"
                     : "text-slate-800 hover:text-blue-600"
@@ -189,16 +189,14 @@ export default function HomePage() {
             <div className="flex items-center gap-4">
               <a
                 href="#contact"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors focus:outline-none"
               >
                 {t.nav.startCooperation}
               </a>
               <LanguageSwitcher
-                className={`${
-                  isOverLightSection
-                    ? "border-slate-400 text-slate-700 hover:bg-slate-200"
-                    : "border-slate-300 text-slate-800 hover:bg-slate-100"
-                }`}
+                className={
+                  isOverLightSection ? "text-slate-700" : "text-slate-800"
+                }
               />
             </div>
           </div>
