@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { twMerge } from "tailwind-merge";
 
 interface LanguageSwitcherProps {
   className?: string;
 }
 
-export default function LanguageSwitcher({
-  className = "",
-}: LanguageSwitcherProps) {
+export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const router = useRouter();
   const { locale, asPath } = router;
 
@@ -18,7 +17,10 @@ export default function LanguageSwitcher({
     <Link
       href={asPath}
       locale={targetLocale}
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors hover:bg-black/5 focus:outline-none ${className}`}
+      className={twMerge(
+        "flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors hover:bg-black/5 focus:outline-none",
+        className
+      )}
       aria-label={locale === "sr" ? "Switch to English" : "Prebaci na srpski"}
     >
       <span className="text-sm font-medium">
