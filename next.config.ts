@@ -30,6 +30,13 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: "standalone",
 
+  // Internationalization (Pages Router)
+  i18n: {
+    locales: ["sr", "en"],
+    defaultLocale: "sr",
+    localeDetection: false, // We handle this manually
+  },
+
   // Security headers
   async headers() {
     return [

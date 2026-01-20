@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { FormValues, contactValidationSchema } from "../contact/validation";

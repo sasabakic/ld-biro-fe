@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
 
 // Sanitize user input to prevent XSS in email HTML
@@ -55,31 +55,44 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-export async function POST(request: NextRequest) {
+type ResponseData = {
+  success?: boolean;
+  message?: string;
+  error?: string;
+};
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  // Only allow POST method
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   try {
     // Rate limiting check
-    const forwarded = request.headers.get("x-forwarded-for");
-    const ip = forwarded
-      ? forwarded.split(",")[0].trim()
-      : request.headers.get("x-real-ip") || "unknown";
+    const forwarded = req.headers["x-forwarded-for"];
+    const ip =
+      typeof forwarded === "string"
+        ? forwarded.split(",")[0].trim()
+        : (req.headers["x-real-ip"] as string) ||
+          req.socket.remoteAddress ||
+          "unknown";
 
     if (isRateLimited(ip)) {
-      return NextResponse.json(
-        {
-          error:
-            "Previše zahteva. Molimo sačekajte minut pre slanja nove poruke.",
-        },
-        { status: 429 }
-      );
+      return res.status(429).json({
+        error:
+          "Previše zahteva. Molimo sačekajte minut pre slanja nove poruke.",
+      });
     }
 
-    const body = await request.json();
     const {
       name: rawName,
       email: rawEmail,
       businessType: rawBusinessType,
       message: rawMessage,
-    } = body;
+    } = req.body;
 
     // Sanitize all user inputs
     const name = escapeHtml(rawName || "");
@@ -89,68 +102,50 @@ export async function POST(request: NextRequest) {
 
     // Validation with Serbian messages (validate BEFORE sanitization)
     if (!rawName || rawName.trim() === "") {
-      return NextResponse.json(
-        { error: "Ime i prezime su obavezni" },
-        { status: 400 }
-      );
+      return res.status(400).json({ error: "Ime i prezime su obavezni" });
     }
 
     if (!rawEmail || rawEmail.trim() === "") {
-      return NextResponse.json(
-        { error: "Email adresa je obavezna" },
-        { status: 400 }
-      );
+      return res.status(400).json({ error: "Email adresa je obavezna" });
     }
 
     // Email validation with header injection check
     if (!isValidEmail(rawEmail)) {
-      return NextResponse.json(
-        { error: "Molimo unesite valjan email" },
-        { status: 400 }
-      );
+      return res.status(400).json({ error: "Molimo unesite valjan email" });
     }
 
     // Sanitize email for use in replyTo header (prevents any header injection)
     const safeEmail = sanitizeEmail(rawEmail);
 
     if (!rawMessage || rawMessage.trim() === "") {
-      return NextResponse.json(
-        { error: "Poruka je obavezna" },
-        { status: 400 }
-      );
+      return res.status(400).json({ error: "Poruka je obavezna" });
     }
 
     // Check if Resend API key and recipient email are configured
     if (!process.env.RESEND_API_KEY) {
       console.error("Resend API key not configured");
-      return NextResponse.json(
-        {
-          error:
-            "Email servis trenutno nije dostupan. Molimo kontaktirajte nas direktno.",
-        },
-        { status: 500 }
-      );
+      return res.status(500).json({
+        error:
+          "Email servis trenutno nije dostupan. Molimo kontaktirajte nas direktno.",
+      });
     }
 
     if (!process.env.CONTACT_EMAIL) {
       console.error("Contact email not configured");
-      return NextResponse.json(
-        {
-          error:
-            "Email servis trenutno nije dostupan. Molimo kontaktirajte nas direktno.",
-        },
-        { status: 500 }
-      );
+      return res.status(500).json({
+        error:
+          "Email servis trenutno nije dostupan. Molimo kontaktirajte nas direktno.",
+      });
     }
 
     // Initialize Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Send email using Resend
-    const { error } = await resend.emails.send({
+    const { error: sendError } = await resend.emails.send({
       from: "LD Biro Kontakt <kontakt@resend.dev>",
       to: [process.env.CONTACT_EMAIL],
-      replyTo: safeEmail, // Allow direct reply to the person who sent the message (sanitized to prevent header injection)
+      replyTo: safeEmail,
       subject: `🔔 NOVA PORUKA: ${name} - ${businessType || "Klijent"}`,
       html: `
         <!DOCTYPE html>
@@ -226,35 +221,24 @@ Možete direktno odgovoriti na ovaj email.
       },
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json(
-        {
-          error: "Greška pri slanju poruke. Molimo pokušajte ponovo.",
-        },
-        { status: 500 }
-      );
+    if (sendError) {
+      console.error("Resend error:", sendError);
+      return res.status(500).json({
+        error: "Greška pri slanju poruke. Molimo pokušajte ponovo.",
+      });
     }
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Poruka je uspešno poslana!",
-      },
-      { status: 200 }
-    );
+    return res.status(200).json({
+      success: true,
+      message: "Poruka je uspešno poslana!",
+    });
   } catch (error) {
     console.error("Error sending email:", error);
-
-    // Log the error for debugging
     console.error("Unexpected error:", error);
 
-    return NextResponse.json(
-      {
-        error:
-          "Greška pri slanju poruke. Molimo pokušajte ponovo ili nas kontaktirajte direktno.",
-      },
-      { status: 500 }
-    );
+    return res.status(500).json({
+      error:
+        "Greška pri slanju poruke. Molimo pokušajte ponovo ili nas kontaktirajte direktno.",
+    });
   }
 }

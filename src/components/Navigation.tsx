@@ -1,5 +1,3 @@
-"use client";
-
 import LDBiroLogo from "./LDBiroLogo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { NAV_LINKS } from "../lib/constants";
