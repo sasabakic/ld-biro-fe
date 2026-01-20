@@ -1,36 +1,119 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
+// Sanitize user input to prevent XSS in email HTML
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Sanitize email to prevent header injection attacks
+// Removes \r, \n, and other control characters that could be used for header injection
+function sanitizeEmail(email: string): string {
+  return email
+    .trim()
+    .replace(/[\r\n\t\x00-\x1F\x7F]/g, "") // Remove control characters
+    .toLowerCase();
+}
+
+// Stricter email validation that also checks for header injection attempts
+function isValidEmail(email: string): boolean {
+  // Check for header injection characters first
+  if (/[\r\n]/.test(email)) {
+    return false;
+  }
+
+  // Standard email regex (already blocks whitespace including \r\n, but explicit check above is clearer)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Simple in-memory rate limiting (resets on server restart)
+// For production, consider using Redis or a proper rate limiting service
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const MAX_REQUESTS = 3; // Max 3 requests per minute per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return false;
+  }
+
+  if (record.count >= MAX_REQUESTS) {
+    return true;
+  }
+
+  record.count++;
+  return false;
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { name, email, businessType, message } = body;
+    // Rate limiting check
+    const forwarded = request.headers.get("x-forwarded-for");
+    const ip = forwarded
+      ? forwarded.split(",")[0].trim()
+      : request.headers.get("x-real-ip") || "unknown";
 
-    // Validation with Serbian messages
-    if (!name || name.trim() === "") {
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        {
+          error:
+            "Previše zahteva. Molimo sačekajte minut pre slanja nove poruke.",
+        },
+        { status: 429 }
+      );
+    }
+
+    const body = await request.json();
+    const {
+      name: rawName,
+      email: rawEmail,
+      businessType: rawBusinessType,
+      message: rawMessage,
+    } = body;
+
+    // Sanitize all user inputs
+    const name = escapeHtml(rawName || "");
+    const email = escapeHtml(rawEmail || "");
+    const businessType = escapeHtml(rawBusinessType || "");
+    const message = escapeHtml(rawMessage || "");
+
+    // Validation with Serbian messages (validate BEFORE sanitization)
+    if (!rawName || rawName.trim() === "") {
       return NextResponse.json(
         { error: "Ime i prezime su obavezni" },
         { status: 400 }
       );
     }
 
-    if (!email || email.trim() === "") {
+    if (!rawEmail || rawEmail.trim() === "") {
       return NextResponse.json(
         { error: "Email adresa je obavezna" },
         { status: 400 }
       );
     }
 
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Email validation with header injection check
+    if (!isValidEmail(rawEmail)) {
       return NextResponse.json(
         { error: "Molimo unesite valjan email" },
         { status: 400 }
       );
     }
 
-    if (!message || message.trim() === "") {
+    // Sanitize email for use in replyTo header (prevents any header injection)
+    const safeEmail = sanitizeEmail(rawEmail);
+
+    if (!rawMessage || rawMessage.trim() === "") {
       return NextResponse.json(
         { error: "Poruka je obavezna" },
         { status: 400 }
@@ -67,7 +150,7 @@ export async function POST(request: NextRequest) {
     const { error } = await resend.emails.send({
       from: "LD Biro Kontakt <kontakt@resend.dev>",
       to: [process.env.CONTACT_EMAIL],
-      replyTo: email, // Allow direct reply to the person who sent the message
+      replyTo: safeEmail, // Allow direct reply to the person who sent the message (sanitized to prevent header injection)
       subject: `🔔 NOVA PORUKA: ${name} - ${businessType || "Klijent"}`,
       html: `
         <!DOCTYPE html>
@@ -93,7 +176,7 @@ export async function POST(request: NextRequest) {
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">📧 Email:</td>
-                <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #3b82f6; text-decoration: none;">${email}</a></td>
+                <td style="padding: 8px 0;"><a href="mailto:${safeEmail}" style="color: #3b82f6; text-decoration: none;">${email}</a></td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">🏢 Tip biznisa:</td>

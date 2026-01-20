@@ -62,11 +62,11 @@
   },
   "about": {
     "title": "About LD Biro",
-    "paragraph1": "LD Biro was founded in 2021 with a clear vision - providing top-quality bookkeeping services based on decades of experience. Our senior accountants have over 30 years of practical experience in the profession, which guarantees invaluable knowledge and expertise.",
+    "paragraph1": "LD Biro was founded in 2022 with a clear vision - providing top-quality bookkeeping services based on decades of experience. Our senior accountants have over 30 years of practical experience in the profession, which guarantees invaluable knowledge and expertise.",
     "paragraph2": "Although we are a young company, our team of certified professionals combines traditional bookkeeping knowledge with modern technologies to provide efficient, accurate, and comprehensive financial solutions. We are especially proud of our long-standing partnership with agricultural farms that our experts have nurtured for decades.",
     "features": [
       "Senior accountants with 30+ years of experience",
-      "Modern company founded in 2021",
+      "Modern company founded in 2022",
       "Specialization in agriculture",
       "Advanced technological solutions",
       "Personalized service for clients"
@@ -105,16 +105,16 @@
       },
       "phone": {
         "label": "Phone",
-        "value": "025/123-4567"
+        "value": "063/587-089"
       },
       "email": {
         "label": "Email",
-        "value": "info@ldbiro.rs"
+        "value": "biro.ld.sombor@gmail.com"
       },
       "workingHours": {
         "label": "Working Hours",
-        "weekdays": "Monday - Friday: 09:00 - 18:00",
-        "saturday": "Saturday: 10:00 - 16:00"
+        "weekdays": "Monday - Friday: 08:00 - 16:00",
+        "saturday": "Saturday - Sunday: Closed"
       }
     },
     "form": {
@@ -163,7 +163,7 @@
       "vatTax": "VAT and Tax Returns",
       "financialReports": "Financial Reports"
     },
-    "copyright": "© 2024 LD Biro. All rights reserved."
+    "copyright": "© 2025 LD Biro. All rights reserved."
   },
   "common": {
     "companyName": "LD Biro",

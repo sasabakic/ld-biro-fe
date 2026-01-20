@@ -62,11 +62,11 @@
   },
   "about": {
     "title": "O LD Biro",
-    "paragraph1": "LD Biro je osnovan 2021. godine sa jasnom vizijom - pružanje vrhunskih usluga knjigovodstva baziranih na decenijskom iskustvu. Naši senior knjigovođe imaju preko 30 godina praktičnog iskustva u struci, što garantuje neprocenjivo znanje i stručnost.",
+    "paragraph1": "LD Biro je osnovan 2022. godine sa jasnom vizijom - pružanje vrhunskih usluga knjigovodstva baziranih na decenijskom iskustvu. Naši senior knjigovođe imaju preko 30 godina praktičnog iskustva u struci, što garantuje neprocenjivo znanje i stručnost.",
     "paragraph2": "Iako smo mlada kompanija, naš tim sertifikovanih stručnjaka kombinuje tradicionalno knjigovodstveno znanje sa modernim tehnologijama kako bi pružio efikasna, tačna i sveobuhvatna finansijska rešenja. Posebno smo ponosni na naše dugogodišnje partnerstvo sa poljoprivrednim gazdinstvima koje naši stručnjaci neguju decenijama.",
     "features": [
       "Senior knjigovođe sa 30+ godina iskustva",
-      "Moderna kompanija osnovana 2021. godine",
+      "Moderna kompanija osnovana 2022. godine",
       "Specijalizacija za poljoprivredu",
       "Napredna tehnološka rešenja",
       "Personalizovana usluga za klijente"
@@ -105,16 +105,16 @@
       },
       "phone": {
         "label": "Telefon",
-        "value": "025/123-4567"
+        "value": "063/587-089"
       },
       "email": {
         "label": "Email",
-        "value": "info@ldbiro.rs"
+        "value": "biro.ld.sombor@gmail.com"
       },
       "workingHours": {
         "label": "Radno vreme",
-        "weekdays": "Ponedeljak - Petak: 09:00 - 18:00",
-        "saturday": "Subota: 10:00 - 16:00"
+        "weekdays": "Ponedeljak - Petak: 08:00 - 16:00",
+        "saturday": "Subota - Nedelja: Zatvoreno"
       }
     },
     "form": {
@@ -163,7 +163,7 @@
       "vatTax": "PDV i poreske prijave",
       "financialReports": "Finansijski izvještaji"
     },
-    "copyright": "© 2024 LD Biro. Sva prava zadržana."
+    "copyright": "© 2025 LD Biro. Sva prava zadržana."
   },
   "common": {
     "companyName": "LD Biro",

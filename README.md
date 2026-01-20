@@ -155,9 +155,9 @@ ld-biro-fe/
 
 For inquiries about this website or LD Biro services:
 
-- **Phone**: (555) 123-4567
-- **Email**: info@ldbiro.com
-- **Address**: 123 Business Avenue, Suite 456, Your City, State 12345
+- **Phone**: 063/587-089
+- **Email**: biro.ld.sombor@gmail.com
+- **Address**: Rade Končara 10, 25000 Sombor, Serbia
 
 ## 🤝 Contributing
 
@@ -165,7 +165,7 @@ This is a client project. For updates or modifications, please contact the devel
 
 ## 📄 License
 
-© 2024 LD Biro. All rights reserved.
+© 2025 LD Biro. All rights reserved.
 
 ---
 
