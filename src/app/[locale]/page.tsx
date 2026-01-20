@@ -251,11 +251,11 @@ export default function HomePage() {
               <div className="text-blue-200">{t.stats.yearsExperience}</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">30+</div>
+              <div className="text-4xl font-bold text-white mb-2">15+</div>
               <div className="text-blue-200">{t.stats.agriculturalFarms}</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">100+</div>
+              <div className="text-4xl font-bold text-white mb-2">80+</div>
               <div className="text-blue-200">{t.stats.satisfiedClients}</div>
             </div>
             <div className="text-center">
