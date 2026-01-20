@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface LDBiroLogoProps {
   width?: number;
   height?: number;
@@ -10,23 +12,14 @@ export default function LDBiroLogo({
   className = "",
 }: LDBiroLogoProps) {
   return (
-    <img
+    <Image
       src="/ld-logo.png"
       alt="LD Biro Logo"
       width={width}
       height={height}
       className={`${className} select-none`}
-      // style={{
-      //   filter: "brightness(0) invert(1)", // Makes black logo white for dark backgrounds
-      //   objectFit: "contain",
-      // }}
       draggable={false}
-      onError={(e) => {
-        // Fallback if image doesn't load
-        const target = e.target as HTMLImageElement;
-        target.style.display = "none";
-        console.error("LD Logo image not found at /ld-logo.png");
-      }}
+      priority={width >= 40} // Prioritize larger logos (likely above fold)
     />
   );
 }
