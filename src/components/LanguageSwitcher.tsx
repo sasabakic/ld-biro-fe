@@ -9,7 +9,7 @@ export default function LanguageSwitcher({
   className = "",
 }: LanguageSwitcherProps) {
   const router = useRouter();
-  const { locale, pathname, asPath } = router;
+  const { locale, asPath } = router;
 
   // Target locale is the opposite of current
   const targetLocale = locale === "sr" ? "en" : "sr";

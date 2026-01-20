@@ -31,10 +31,11 @@ const nextConfig: NextConfig = {
   output: "standalone",
 
   // Internationalization (Pages Router)
+  // Locale is automatically detected from URL: / = sr, /en = en
   i18n: {
     locales: ["sr", "en"],
     defaultLocale: "sr",
-    localeDetection: false, // We handle this manually
+    localeDetection: false, // Don't auto-detect from browser headers, use URL only
   },
 
   // Security headers
