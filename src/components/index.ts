@@ -2,6 +2,9 @@
 export { default as Navigation } from "./Navigation";
 export { default as Footer } from "./Footer";
 
+// SEO components
+export { default as MetaData } from "./MetaData";
+
 // Form components
 export { default as ContactForm } from "./ContactForm";
 

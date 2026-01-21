@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
 interface LDBiroLogoProps {
   width?: number;
@@ -9,7 +10,7 @@ interface LDBiroLogoProps {
 export default function LDBiroLogo({
   width = 40,
   height = 40,
-  className = "",
+  className,
 }: LDBiroLogoProps) {
   return (
     <Image
@@ -17,7 +18,7 @@ export default function LDBiroLogo({
       alt="LD Biro Logo"
       width={width}
       height={height}
-      className={`${className} select-none`}
+      className={twMerge("select-none", className)}
       draggable={false}
       priority={width >= 40} // Prioritize larger logos (likely above fold)
     />
