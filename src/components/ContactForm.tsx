@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { FormValues, contactValidationSchema } from "../contact/validation";
 import { BUSINESS_TYPE_KEYS } from "../lib/constants";
+import { CheckCircleIcon, XCircleIcon } from "./icons";
 
 interface ContactFormTranslations {
   form: {
@@ -35,14 +36,19 @@ const INITIAL_VALUES: FormValues = {
   message: "",
 };
 
+interface SubmitStatus {
+  message: string;
+  isSuccess: boolean;
+}
+
 export default function ContactForm({ translations: t }: ContactFormProps) {
-  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus | null>(null);
 
   const handleSubmit = async (
     values: FormValues,
     { setSubmitting, resetForm }: FormikHelpers<FormValues>
   ) => {
-    setSubmitMessage("");
+    setSubmitStatus(null);
 
     try {
       const response = await fetch("/api/contact", {
@@ -56,14 +62,23 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
       const result = await response.json();
 
       if (response.ok) {
-        setSubmitMessage(result.message || t.messages.success);
+        setSubmitStatus({
+          message: result.message || t.messages.success,
+          isSuccess: true,
+        });
         resetForm();
       } else {
-        setSubmitMessage(result.error || t.messages.error);
+        setSubmitStatus({
+          message: result.error || t.messages.error,
+          isSuccess: false,
+        });
       }
     } catch (error) {
       console.error("Error:", error);
-      setSubmitMessage(t.messages.error);
+      setSubmitStatus({
+        message: t.messages.error,
+        isSuccess: false,
+      });
     } finally {
       setSubmitting(false);
     }
@@ -151,15 +166,20 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
             </div>
 
             {/* Submit Message */}
-            {submitMessage && (
+            {submitStatus && (
               <div
-                className={`p-4 rounded-lg ${
-                  submitMessage === t.messages.success
-                    ? "bg-green-50 text-green-800"
-                    : "bg-red-50 text-red-800"
+                className={`p-4 rounded-lg flex items-center gap-3 ${
+                  submitStatus.isSuccess
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
                 }`}
               >
-                {submitMessage}
+                {submitStatus.isSuccess ? (
+                  <CheckCircleIcon className="w-5 h-5 flex-shrink-0" />
+                ) : (
+                  <XCircleIcon className="w-5 h-5 flex-shrink-0" />
+                )}
+                <span>{submitStatus.message}</span>
               </div>
             )}
 
