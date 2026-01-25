@@ -8,13 +8,13 @@
   "hero": {
     "title": "Vaš pouzdan partner za",
     "titleHighlight": "Knjigovodstvo",
-    "description": "LD Biro pruža stručne usluge knjigovodstva, poresko planiranje i finansijsko savetovanje. Specijalizovani smo za poljoprivredna gazdinstva i MSP preduzetnike koji traže pouzdanog partnera.",
+    "description": "LD Biro Doo Sombor pruža stručne usluge u oblasti knjigovodstva, poreskog planiranja i finansijskog savetovanja. Specijalizovani smo za sve vrste delatnosti i poreskih obveznika koji traže pouzdanog partnera.",
     "scheduleConsultation": "Zakaži konsultacije",
     "learnMore": "Saznaj više"
   },
   "stats": {
     "yearsExperience": "Godina iskustva tima",
-    "agriculturalFarms": "Poljoprivrednih gazdinstava",
+    "agriculturalFarms": "Klijenata iz oblasti poljoprivrede",
     "satisfiedClients": "Zadovoljnih klijenata",
     "support": "Podrška"
   },
@@ -24,7 +24,7 @@
     "items": [
       {
         "title": "Poresko planiranje i priprema",
-        "description": "Strateško poresko planiranje i precizna priprema da minimizujemo vaše poreske obaveze uz punu usklađenost sa propisima."
+        "description": "Strateško poresko planiranje i precizna priprema za Vaše poreske obaveze uz punu usklađenost sa propisima."
       },
       {
         "title": "Kompletno knjigovodstvo",
@@ -32,7 +32,7 @@
       },
       {
         "title": "Poljoprivredna gazdinstva",
-        "description": "Specijalizovani smo za knjigovodstvo poljoprivrednih gazdinstava - subvencije, podsticaji, specifični propisi."
+        "description": "Specijalizovani smo za knjigovodstvo poljoprivrednih gazdinstava, mikro, malih i srednjih preduzeća koji se bave agro biznisom i uslugama iz oblasti poljoprivrede - subvencije, podsticaji, specifični propisi, e-agrar."
       },
       {
         "title": "Finansijsko savetovanje",
@@ -63,7 +63,7 @@
   "about": {
     "title": "O LD Biro",
     "paragraph1": "LD Biro je osnovan 2022. godine sa jasnom vizijom - pružanje vrhunskih usluga knjigovodstva baziranih na decenijskom iskustvu. Naši senior knjigovođe imaju preko 30 godina praktičnog iskustva u struci, što garantuje neprocenjivo znanje i stručnost.",
-    "paragraph2": "Iako smo mlada kompanija, naš tim sertifikovanih stručnjaka kombinuje tradicionalno knjigovodstveno znanje sa modernim tehnologijama kako bi pružio efikasna, tačna i sveobuhvatna finansijska rešenja. Posebno smo ponosni na naše dugogodišnje partnerstvo sa poljoprivrednim gazdinstvima koje naši stručnjaci neguju decenijama.",
+    "paragraph2": "Iako smo mlada kompanija, naš tim sertifikovanih stručnjaka kombinuje tradicionalno knjigovodstveno znanje sa modernim tehnologijama kako bi pružio efikasna, tačna i sveobuhvatna finansijska rešenja. Posebno ističemo naše dugogodišnje iskustvo i saradnju sa obveznicima iz oblasti poljoprivrede, koju naši stručnjaci neguju decenijama.",
     "features": [
       "Senior knjigovođe sa 30+ godina iskustva",
       "Moderna kompanija osnovana 2022. godine",

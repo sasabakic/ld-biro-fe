@@ -8,13 +8,13 @@
   "hero": {
     "title": "Your Reliable Partner for",
     "titleHighlight": "Bookkeeping",
-    "description": "LD Biro provides professional bookkeeping services, tax planning, and financial consulting. We specialize in agricultural farms and SME entrepreneurs looking for a reliable partner.",
+    "description": "LD Biro Doo Sombor provides professional services in bookkeeping, tax planning, and financial consulting. We specialize in all types of businesses and taxpayers looking for a reliable partner.",
     "scheduleConsultation": "Schedule Consultation",
     "learnMore": "Learn More"
   },
   "stats": {
     "yearsExperience": "Years of Team Experience",
-    "agriculturalFarms": "Agricultural Farms",
+    "agriculturalFarms": "Clients from agriculture",
     "satisfiedClients": "Satisfied Clients",
     "support": "Support"
   },
@@ -24,7 +24,7 @@
     "items": [
       {
         "title": "Tax Planning and Preparation",
-        "description": "Strategic tax planning and precise preparation to minimize your tax obligations while ensuring full regulatory compliance."
+        "description": "Strategic tax planning and precise preparation for your tax obligations while ensuring full regulatory compliance."
       },
       {
         "title": "Complete Bookkeeping",
@@ -32,7 +32,7 @@
       },
       {
         "title": "Agricultural Farms",
-        "description": "We specialize in bookkeeping for agricultural farms - subsidies, incentives, specific regulations."
+        "description": "We specialize in bookkeeping for agricultural farms, micro, small and medium enterprises engaged in agribusiness and agricultural services - subsidies, incentives, specific regulations, e-agrar."
       },
       {
         "title": "Financial Consulting",
@@ -63,7 +63,7 @@
   "about": {
     "title": "About LD Biro",
     "paragraph1": "LD Biro was founded in 2022 with a clear vision - providing top-quality bookkeeping services based on decades of experience. Our senior accountants have over 30 years of practical experience in the profession, which guarantees invaluable knowledge and expertise.",
-    "paragraph2": "Although we are a young company, our team of certified professionals combines traditional bookkeeping knowledge with modern technologies to provide efficient, accurate, and comprehensive financial solutions. We are especially proud of our long-standing partnership with agricultural farms that our experts have nurtured for decades.",
+    "paragraph2": "Although we are a young company, our team of certified professionals combines traditional bookkeeping knowledge with modern technologies to provide efficient, accurate, and comprehensive financial solutions. We especially highlight our long-standing experience and cooperation with clients from the agricultural sector, which our experts have nurtured for decades.",
     "features": [
       "Senior accountants with 30+ years of experience",
       "Modern company founded in 2022",
