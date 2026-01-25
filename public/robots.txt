@@ -1,0 +1,65 @@
+# Robots.txt - Temporary deployment - Block ALL search engine crawlers
+# This site should NOT be indexed, crawled, or discovered
+# Only accessible via direct link
+
+User-agent: *
+Disallow: /
+Noindex: /
+
+# Explicitly block all major crawlers
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Googlebot-News
+Disallow: /
+
+User-agent: Googlebot-Video
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+User-agent: Exabot
+Disallow: /
+
+User-agent: facebot
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /
+
+User-agent: LinkedInBot
+Disallow: /
+
+User-agent: Pinterestbot
+Disallow: /
+
+User-agent: WhatsApp
+Disallow: /
+
+User-agent: Telegrambot
+Disallow: /
+
+# No sitemap provided
+Sitemap:

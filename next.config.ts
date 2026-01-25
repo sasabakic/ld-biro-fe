@@ -44,6 +44,11 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: [
+          // Block search engine indexing - temporary deployment only
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet, noimageindex",
+          },
           // Content Security Policy - prevents XSS attacks
           {
             key: "Content-Security-Policy",
