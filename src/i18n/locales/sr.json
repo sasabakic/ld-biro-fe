@@ -105,7 +105,8 @@
       },
       "phone": {
         "label": "Telefon",
-        "value": "063/587-089"
+        "value": "063/587-089",
+        "value2": "064/239-3027"
       },
       "email": {
         "label": "Email",
@@ -166,7 +167,7 @@
     "copyright": "© 2025 LD Biro. Sva prava zadržana."
   },
   "common": {
-    "companyName": "LD Biro",
+    "companyName": "LD Biro doo Sombor",
     "tagline": "Knjigovodstvo & Finansije"
   }
 }

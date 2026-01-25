@@ -213,7 +213,11 @@ export default function Home() {
                   icon={CONTACT_ICONS.phone}
                   label={t.contact.info.phone.label}
                 >
-                  <p>{t.contact.info.phone.value}</p>
+                  <p>
+                    {t.contact.info.phone.value}
+                    <br />
+                    {t.contact.info.phone.value2}
+                  </p>
                 </ContactInfoItem>
 
                 <ContactInfoItem
