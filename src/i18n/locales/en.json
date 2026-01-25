@@ -47,8 +47,8 @@
         "description": "Assistance with choosing organizational structure, registration, and establishing compliance systems."
       },
       {
-        "title": "Audit and Verification",
-        "description": "Professional audit services ensuring accuracy and regulatory compliance."
+        "title": "Business Plan Development",
+        "description": "Creating financial projections and business plans for the successful growth of your business."
       },
       {
         "title": "VAT and Tax Returns",
@@ -159,7 +159,7 @@
       "financialConsulting": "Financial Consulting",
       "payroll": "Payroll Processing",
       "companyFormation": "Company Formation",
-      "audit": "Audit and Verification",
+      "audit": "Business Plan Development",
       "vatTax": "VAT and Tax Returns",
       "financialReports": "Financial Reports"
     },

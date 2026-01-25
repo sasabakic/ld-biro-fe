@@ -14,7 +14,7 @@ export const SERVICE_ICONS = [
   "💼", // Financial Consulting
   "💰", // Payroll Processing
   "🏢", // Company Formation
-  "🔍", // Audit and Verification
+  "📋", // Business Plan Development
   "📄", // VAT and Tax Returns
   "📈", // Financial Reports
 ] as const;

@@ -47,8 +47,8 @@
         "description": "Pomoć pri izboru organizacione strukture, registraciji i uspostavljanju sistema usklađenosti."
       },
       {
-        "title": "Revizija i verifikacija",
-        "description": "Profesionalne usluge revizije koje osiguravaju tačnost i usklađenost sa propisima."
+        "title": "Izrada poslovnih planova",
+        "description": "Kreiranje finansijskih projekcija i poslovnih planova za uspešan razvoj vašeg biznisa."
       },
       {
         "title": "PDV i poreske prijave",
@@ -159,7 +159,7 @@
       "financialConsulting": "Finansijsko savetovanje",
       "payroll": "Obračun zarada",
       "companyFormation": "Osnivanje preduzeća",
-      "audit": "Revizija i verifikacija",
+      "audit": "Izrada poslovnih planova",
       "vatTax": "PDV i poreske prijave",
       "financialReports": "Finansijski izvještaji"
     },
