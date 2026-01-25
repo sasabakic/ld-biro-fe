@@ -1,7 +1,7 @@
 // Company statistics - update these values as needed
 export const COMPANY_STATS = {
   yearsExperience: "30+",
-  agriculturalFarms: "15+",
+  agriculturalFarms: "25+",
   satisfiedClients: "80+",
   support: "24/7",
 } as const;

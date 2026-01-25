@@ -31,7 +31,7 @@
         "description": "Sveobuhvatne usluge knjigovodstva za održavanje tačnih i ažurnih finansijskih evidencija vašeg preduzeća."
       },
       {
-        "title": "Poljoprivredna gazdinstva",
+        "title": "Poljoprivreda",
         "description": "Specijalizovani smo za knjigovodstvo poljoprivrednih gazdinstava, mikro, malih i srednjih preduzeća koji se bave agro biznisom i uslugama iz oblasti poljoprivrede - subvencije, podsticaji, specifični propisi, e-agrar."
       },
       {
@@ -156,7 +156,7 @@
     "serviceLinks": {
       "taxPlanning": "Poresko planiranje",
       "completeBookkeeping": "Kompletno knjigovodstvo",
-      "agriculturalFarms": "Poljoprivredna gazdinstva",
+      "agriculturalFarms": "Poljoprivreda",
       "financialConsulting": "Finansijsko savetovanje",
       "payroll": "Obračun zarada",
       "companyFormation": "Osnivanje preduzeća",

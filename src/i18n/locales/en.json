@@ -31,7 +31,7 @@
         "description": "Comprehensive bookkeeping services to maintain accurate and up-to-date financial records for your business."
       },
       {
-        "title": "Agricultural Farms",
+        "title": "Agriculture",
         "description": "We specialize in bookkeeping for agricultural farms, micro, small and medium enterprises engaged in agribusiness and agricultural services - subsidies, incentives, specific regulations, e-agrar."
       },
       {
@@ -156,7 +156,7 @@
     "serviceLinks": {
       "taxPlanning": "Tax Planning",
       "completeBookkeeping": "Complete Bookkeeping",
-      "agriculturalFarms": "Agricultural Farms",
+      "agriculturalFarms": "Agriculture",
       "financialConsulting": "Financial Consulting",
       "payroll": "Payroll Processing",
       "companyFormation": "Company Formation",
