@@ -108,8 +108,8 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
           <Form className="space-y-6">
             {/* Name Field */}
             <div>
-              <label className={labelClassName}>{t.form.name}</label>
-              <Field type="text" name="name" className={inputClassName} />
+              <label htmlFor="name" className={labelClassName}>{t.form.name}</label>
+              <Field type="text" name="name" id="name" className={inputClassName} />
               <ErrorMessage
                 name="name"
                 component="div"
@@ -119,8 +119,8 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
 
             {/* Email Field */}
             <div>
-              <label className={labelClassName}>{t.form.email}</label>
-              <Field type="email" name="email" className={inputClassName} />
+              <label htmlFor="email" className={labelClassName}>{t.form.email}</label>
+              <Field type="email" name="email" id="email" className={inputClassName} />
               <ErrorMessage
                 name="email"
                 component="div"
@@ -130,10 +130,10 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
 
             {/* Business Type Field */}
             <div>
-              <label className={labelClassName}>
+              <label htmlFor="businessType" className={labelClassName}>
                 {t.form.businessType.label}
               </label>
-              <Field as="select" name="businessType" className={inputClassName}>
+              <Field as="select" name="businessType" id="businessType" className={inputClassName}>
                 <option value="">{t.form.businessType.placeholder}</option>
                 {businessTypeOptions.map((option) => (
                   <option key={option.key} value={option.value}>
@@ -150,10 +150,11 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
 
             {/* Message Field */}
             <div>
-              <label className={labelClassName}>{t.form.message}</label>
+              <label htmlFor="message" className={labelClassName}>{t.form.message}</label>
               <Field
                 as="textarea"
                 name="message"
+                id="message"
                 rows={4}
                 className={inputClassName}
                 placeholder={t.form.messagePlaceholder}
