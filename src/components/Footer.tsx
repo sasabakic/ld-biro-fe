@@ -39,7 +39,7 @@ export default function Footer({ translations: t }: FooterProps) {
               <LDBiroLogo width={32} height={32} className="mr-3" />
               <h3 className="text-2xl font-bold">{t.common.companyName}</h3>
             </div>
-            <p className="text-slate-600 mb-4">{t.footer.description}</p>
+            <p className="text-slate-700 mb-4">{t.footer.description}</p>
           </div>
 
           {/* Basic Services */}
@@ -47,7 +47,7 @@ export default function Footer({ translations: t }: FooterProps) {
             <h4 className="text-lg font-semibold mb-4">
               {t.footer.basicServices}
             </h4>
-            <ul className="space-y-2 text-slate-600">
+            <ul className="space-y-2 text-slate-700">
               {FOOTER_BASIC_SERVICES.map(({ key, serviceIndex }) => (
                 <li key={key}>
                   <a
@@ -66,7 +66,7 @@ export default function Footer({ translations: t }: FooterProps) {
             <h4 className="text-lg font-semibold mb-4">
               {t.footer.additionalServices}
             </h4>
-            <ul className="space-y-2 text-slate-600">
+            <ul className="space-y-2 text-slate-700">
               {FOOTER_ADDITIONAL_SERVICES.map(({ key, serviceIndex }) => (
                 <li key={key}>
                   <a
@@ -85,7 +85,7 @@ export default function Footer({ translations: t }: FooterProps) {
             <h4 className="text-lg font-semibold mb-4">
               {t.footer.navigation}
             </h4>
-            <ul className="space-y-2 text-slate-600">
+            <ul className="space-y-2 text-slate-700">
               {NAV_LINKS.map((link) => (
                 <li key={link.key}>
                   <a
@@ -101,7 +101,7 @@ export default function Footer({ translations: t }: FooterProps) {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-slate-300 mt-8 pt-8 text-center text-slate-500">
+        <div className="border-t border-slate-300 mt-8 pt-8 text-center text-slate-700">
           <p>{t.footer.copyright}</p>
         </div>
       </div>

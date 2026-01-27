@@ -16,7 +16,7 @@ export default function ContactInfoItem({
       <div className="text-2xl mr-4">{icon}</div>
       <div>
         <h4 className="font-semibold text-slate-900">{label}</h4>
-        <div className="text-slate-600">{children}</div>
+        <div className="text-slate-700">{children}</div>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export default function ServiceCard({
       <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-blue-800">
         {title}
       </h3>
-      <p className="text-slate-600">{description}</p>
+      <p className="text-slate-700">{description}</p>
     </div>
   );
 }

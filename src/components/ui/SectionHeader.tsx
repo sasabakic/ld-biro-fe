@@ -15,7 +15,7 @@ export default function SectionHeader({
     <div className={twMerge("text-center mb-16", className)}>
       <h2 className="text-4xl font-bold text-slate-900 mb-4">{title}</h2>
       {subtitle && (
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto">{subtitle}</p>
+        <p className="text-xl text-slate-700 max-w-3xl mx-auto">{subtitle}</p>
       )}
     </div>
   );

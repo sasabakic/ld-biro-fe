@@ -154,10 +154,10 @@ export default function Home() {
               <h2 className="text-4xl font-bold text-slate-900 mb-6">
                 {t.about.title}
               </h2>
-              <p className="text-lg text-slate-600 mb-6">
+              <p className="text-lg text-slate-700 mb-6">
                 {t.about.paragraph1}
               </p>
-              <p className="text-lg text-slate-600 mb-8">
+              <p className="text-lg text-slate-700 mb-8">
                 {t.about.paragraph2}
               </p>
               <div className="space-y-4">
