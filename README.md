@@ -1,4 +1,4 @@
-# LD Biro - Professional Accounting & Financial Services
+# LD Biro - Professional Accounting & Financial Services (Vibecoding the whole project)
 
 A modern, responsive website for LD Biro accounting firm built with Next.js, React, and Tailwind CSS.
 
