@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
   // Internationalization (Pages Router)
   // Locale is automatically detected from URL: / = sr, /en = en
   i18n: {
-    locales: ["sr", "en"],
+    locales: ["sr", "en", "ru"],
     defaultLocale: "sr",
     localeDetection: false, // Don't auto-detect from browser headers, use URL only
   },

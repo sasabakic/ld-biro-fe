@@ -14,11 +14,13 @@ const OG_IMAGE = `${BASE_URL}/ld-og-image.png`;
 const titles: Record<Locale, string> = {
   sr: "LD Biro - Stručno Knjigovodstvo & Finansijske Usluge | 30+ godina iskustva",
   en: "LD Biro - Professional Bookkeeping & Financial Services | 30+ years experience",
+  ru: "LD Biro - Профессиональная Бухгалтерия & Финансовые Услуги | 30+ лет опыта",
 };
 
 const descriptions: Record<Locale, string> = {
   sr: "Stručne usluge knjigovodstva, poresko planiranje i finansijsko savetovanje za preduzeća i poljoprivredna gazdinstva. Senior stručnjaci sa 30+ godina iskustva.",
   en: "Professional bookkeeping services, tax planning and financial consulting for businesses and agricultural farms. Senior experts with 30+ years of experience.",
+  ru: "Профессиональные бухгалтерские услуги, налоговое планирование и финансовое консультирование для предприятий и сельскохозяйственных хозяйств. Старшие специалисты с 30+ летним опытом.",
 };
 
 const keywords = [
@@ -57,6 +59,7 @@ const keywords = [
 // JSON-LD Structured Data
 function getStructuredData(locale: Locale, canonicalUrl: string) {
   const isSerbian = locale === "sr";
+  const isRussian = locale === "ru";
 
   // LocalBusiness schema for the accounting firm
   const localBusiness = {
@@ -112,14 +115,22 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
           "Obračun zarada",
           "Osnivanje preduzeća",
         ]
-      : [
-          "Bookkeeping",
-          "Accounting",
-          "Tax Planning",
-          "Financial Consulting",
-          "Payroll Processing",
-          "Company Formation",
-        ],
+      : isRussian
+        ? [
+            "Бухгалтерский учёт",
+            "Налоговое планирование",
+            "Финансовое консультирование",
+            "Расчёт заработной платы",
+            "Регистрация предприятий",
+          ]
+        : [
+            "Bookkeeping",
+            "Accounting",
+            "Tax Planning",
+            "Financial Consulting",
+            "Payroll Processing",
+            "Company Formation",
+          ],
     founder: {
       "@type": "Person",
       name: "Lidija Vojkić",
@@ -152,6 +163,11 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
         name: "English",
         alternateName: "en",
       },
+      {
+        "@type": "Language",
+        name: "Russian",
+        alternateName: "ru",
+      },
     ],
   };
 
@@ -163,7 +179,7 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
       {
         "@type": "ListItem",
         position: 1,
-        name: isSerbian ? "Početna" : "Home",
+        name: isSerbian ? "Početna" : isRussian ? "Главная" : "Home",
         item: canonicalUrl,
       },
     ],
@@ -175,8 +191,8 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
 export default function MetaData({ locale }: MetaDataProps) {
   const title = titles[locale];
   const description = descriptions[locale];
-  const canonicalUrl = locale === "sr" ? BASE_URL : `${BASE_URL}/en`;
-  const ogLocale = locale === "sr" ? "sr_RS" : "en_US";
+  const canonicalUrl = locale === "sr" ? BASE_URL : `${BASE_URL}/${locale}`;
+  const ogLocale = locale === "sr" ? "sr_RS" : locale === "ru" ? "ru_RU" : "en_US";
   const structuredData = getStructuredData(locale, canonicalUrl);
 
   return (

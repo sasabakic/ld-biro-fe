@@ -3,14 +3,16 @@
 import { createContext, useContext, ReactNode } from "react";
 import en from "./locales/en.json";
 import sr from "./locales/sr.json";
+import ru from "./locales/ru.json";
 
-export type Locale = "en" | "sr";
+export type Locale = "en" | "sr" | "ru";
 
 type TranslationType = typeof en;
 
 const translations: Record<Locale, TranslationType> = {
   en,
   sr,
+  ru,
 };
 
 interface I18nContextType {
