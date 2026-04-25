@@ -28,7 +28,6 @@ const ContentSecurityPolicy = isDev
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: "standalone",
 
   // Internationalization (Pages Router)
   // Locale is automatically detected from URL: / = sr, /en = en
@@ -106,3 +105,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();
