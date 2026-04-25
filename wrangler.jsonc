@@ -7,5 +7,9 @@
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
-	}
+	},
+	"routes": [
+		{ "pattern": "ldbiro.rs", "custom_domain": true },
+		{ "pattern": "www.ldbiro.rs", "custom_domain": true }
+	]
 }
