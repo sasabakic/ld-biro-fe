@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { FormValues, contactValidationSchema } from "../contact/validation";
 import { BUSINESS_TYPE_KEYS } from "../lib/constants";
 import { CheckCircleIcon, XCircleIcon } from "./icons";
+import { trackContactFormStart, trackContactFormSubmit } from "../lib/analytics";
 
 interface ContactFormTranslations {
   form: {
@@ -43,6 +44,7 @@ interface SubmitStatus {
 
 export default function ContactForm({ translations: t }: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus | null>(null);
+  const formStartTracked = useRef(false);
 
   const handleSubmit = async (
     values: FormValues,
@@ -62,6 +64,7 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
       const result = await response.json();
 
       if (response.ok) {
+        trackContactFormSubmit();
         setSubmitStatus({
           message: result.message || t.messages.success,
           isSuccess: true,
@@ -105,7 +108,12 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="space-y-6">
+          <Form className="space-y-6" onFocusCapture={() => {
+              if (!formStartTracked.current) {
+                formStartTracked.current = true;
+                trackContactFormStart();
+              }
+            }}>
             {/* Name Field */}
             <div>
               <label htmlFor="name" className={labelClassName}>{t.form.name}</label>

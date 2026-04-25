@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { twMerge } from "tailwind-merge";
+import { trackLanguageChange } from "../lib/analytics";
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -24,6 +25,7 @@ export default function LanguageSwitcher({ className, isMobile = false }: Langua
   const handleSelect = (code: string) => {
     setIsOpen(false);
     if (code === locale) return;
+    trackLanguageChange(code);
     const pathWithoutHash = asPath.split("#")[0];
     router.push(pathWithoutHash, pathWithoutHash, { locale: code });
   };

@@ -166,6 +166,11 @@
     },
     "copyright": "© 2025 LD Biro. All rights reserved."
   },
+  "cookieConsent": {
+    "message": "We use analytics cookies to improve your experience on our website.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
   "common": {
     "companyName": "LD Biro doo Sombor",
     "tagline": "Bookkeeping & Finance"

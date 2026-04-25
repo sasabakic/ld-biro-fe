@@ -166,6 +166,11 @@
     },
     "copyright": "© 2025 LD Biro. Sva prava zadržana."
   },
+  "cookieConsent": {
+    "message": "Koristimo kolačiće za analitiku kako bismo poboljšali vaše iskustvo na sajtu.",
+    "accept": "Prihvatam",
+    "decline": "Odbijam"
+  },
   "common": {
     "companyName": "LD Biro doo Sombor",
     "tagline": "Knjigovodstvo & Finansije"
