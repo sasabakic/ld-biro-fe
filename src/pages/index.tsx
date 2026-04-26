@@ -18,6 +18,7 @@ import {
   CONTACT_ICONS,
   LIGHT_SECTIONS,
 } from "../lib/constants";
+import { trackPhoneClick, trackEmailClick, trackCtaClick } from "../lib/analytics";
 
 export default function Home() {
   const router = useRouter();
@@ -91,6 +92,7 @@ export default function Home() {
                 <a
                   href="#contact"
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105"
+                  onClick={() => trackCtaClick("hero")}
                 >
                   {t.hero.scheduleConsultation}
                 </a>
@@ -214,9 +216,21 @@ export default function Home() {
                   label={t.contact.info.phone.label}
                 >
                   <p>
-                    {t.contact.info.phone.value}
+                    <a
+                      href="tel:+381635870089"
+                      onClick={() => trackPhoneClick(t.contact.info.phone.value)}
+                      className="hover:text-blue-600 transition-colors"
+                    >
+                      {t.contact.info.phone.value}
+                    </a>
                     <br />
-                    {t.contact.info.phone.value2}
+                    <a
+                      href="tel:+381642393027"
+                      onClick={() => trackPhoneClick(t.contact.info.phone.value2)}
+                      className="hover:text-blue-600 transition-colors"
+                    >
+                      {t.contact.info.phone.value2}
+                    </a>
                   </p>
                 </ContactInfoItem>
 
@@ -224,7 +238,15 @@ export default function Home() {
                   icon={CONTACT_ICONS.email}
                   label={t.contact.info.email.label}
                 >
-                  <p>{t.contact.info.email.value}</p>
+                  <p>
+                    <a
+                      href="mailto:biro.ld.sombor@gmail.com"
+                      onClick={() => trackEmailClick(t.contact.info.email.value)}
+                      className="hover:text-blue-600 transition-colors"
+                    >
+                      {t.contact.info.email.value}
+                    </a>
+                  </p>
                 </ContactInfoItem>
 
                 <ContactInfoItem

@@ -166,6 +166,11 @@
     },
     "copyright": "© 2025 LD Biro. Все права защищены."
   },
+  "cookieConsent": {
+    "message": "Мы используем аналитические файлы cookie для улучшения вашего опыта на сайте.",
+    "accept": "Принять",
+    "decline": "Отклонить"
+  },
   "common": {
     "companyName": "LD Biro doo Сомбор",
     "tagline": "Бухгалтерия & Финансы"

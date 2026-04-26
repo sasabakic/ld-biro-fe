@@ -3,6 +3,7 @@ import LDBiroLogo from "./LDBiroLogo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { MenuIcon, CloseIcon } from "./icons";
 import { NAV_LINKS } from "../lib/constants";
+import { trackNavClick, trackCtaClick } from "../lib/analytics";
 
 interface NavigationProps {
   isOverLightSection: boolean;
@@ -90,7 +91,7 @@ export default function Navigation({
             {/* Desktop Nav Links */}
             <div className="hidden md:flex items-center space-x-8">
               {NAV_LINKS.map((link) => (
-                <a key={link.key} href={link.href} className={navLinkClass}>
+                <a key={link.key} href={link.href} className={navLinkClass} onClick={() => trackNavClick(link.key)}>
                   {t.nav[link.key as keyof typeof t.nav]}
                 </a>
               ))}
@@ -101,6 +102,7 @@ export default function Navigation({
               <a
                 href="#contact"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors focus:outline-none"
+                onClick={() => trackCtaClick("header")}
               >
                 {t.nav.startCooperation}
               </a>
@@ -162,7 +164,7 @@ export default function Navigation({
                 <a
                   key={link.key}
                   href={link.href}
-                  onClick={closeMobileMenu}
+                  onClick={() => { trackNavClick(link.key); closeMobileMenu(); }}
                   className="px-4 py-3 text-slate-700 hover:bg-slate-100 hover:text-blue-600 rounded-lg transition-colors focus:outline-none"
                 >
                   {t.nav[link.key as keyof typeof t.nav]}
@@ -183,7 +185,7 @@ export default function Navigation({
             <div className="pt-4">
               <a
                 href="#contact"
-                onClick={closeMobileMenu}
+                onClick={() => { trackCtaClick("mobile_menu"); closeMobileMenu(); }}
                 className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-6 py-3 rounded-full transition-colors focus:outline-none font-medium"
               >
                 {t.nav.startCooperation}
