@@ -80,7 +80,7 @@ export default function Home() {
               }`}
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-relaxed">
-                {t.hero.title}
+                {t.hero.title}{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block mt-2 pb-2">
                   {t.hero.titleHighlight}
                 </span>

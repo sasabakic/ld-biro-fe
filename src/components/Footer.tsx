@@ -14,6 +14,14 @@ interface FooterTranslations {
     about: string;
     contact: string;
   };
+  contact: {
+    info: {
+      address: { line1: string; line2: string };
+      phone: { value: string; value2: string };
+      email: { value: string };
+      workingHours: { weekdays: string; saturday: string };
+    };
+  };
   footer: {
     description: string;
     basicServices: string;
@@ -33,13 +41,45 @@ export default function Footer({ translations: t }: FooterProps) {
     <footer className="bg-slate-200 text-slate-800 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-5 gap-8">
-          {/* Company Info */}
+          {/* Company Info + NAP */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
               <LDBiroLogo width={32} height={32} className="mr-3" />
               <h3 className="text-2xl font-bold">{t.common.companyName}</h3>
             </div>
             <p className="text-slate-700 mb-4">{t.footer.description}</p>
+            <address className="not-italic text-sm text-slate-700 space-y-1">
+              <div>
+                <strong>{t.contact.info.address.line1}</strong>,{" "}
+                {t.contact.info.address.line2}
+              </div>
+              <div>
+                <a
+                  href={`tel:+381${t.contact.info.phone.value.replace(/\D/g, "").replace(/^0/, "")}`}
+                  className="hover:text-slate-900"
+                >
+                  {t.contact.info.phone.value}
+                </a>
+                {" · "}
+                <a
+                  href={`tel:+381${t.contact.info.phone.value2.replace(/\D/g, "").replace(/^0/, "")}`}
+                  className="hover:text-slate-900"
+                >
+                  {t.contact.info.phone.value2}
+                </a>
+              </div>
+              <div>
+                <a
+                  href={`mailto:${t.contact.info.email.value}`}
+                  className="hover:text-slate-900"
+                >
+                  {t.contact.info.email.value}
+                </a>
+              </div>
+              <div className="text-slate-600">
+                {t.contact.info.workingHours.weekdays}
+              </div>
+            </address>
           </div>
 
           {/* Basic Services */}

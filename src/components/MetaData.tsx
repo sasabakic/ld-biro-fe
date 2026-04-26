@@ -12,30 +12,40 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://ldbiro.rs";
 const OG_IMAGE = `${BASE_URL}/ld-og-image.png`;
 
 const titles: Record<Locale, string> = {
-  sr: "LD Biro - Stručno Knjigovodstvo & Finansijske Usluge | 30+ godina iskustva",
-  en: "LD Biro - Professional Bookkeeping & Financial Services | 30+ years experience",
-  ru: "LD Biro - Профессиональная Бухгалтерия & Финансовые Услуги | 30+ лет опыта",
+  sr: "Knjigovodstvo i računovodstvo Sombor – LD Biro agencija",
+  en: "Bookkeeping & Accounting Sombor – LD Biro Agency",
+  ru: "Бухгалтерия и учёт Сомбор – агенция LD Biro",
 };
 
 const descriptions: Record<Locale, string> = {
-  sr: "Stručne usluge knjigovodstva, poresko planiranje i finansijsko savetovanje za preduzeća i poljoprivredna gazdinstva. Senior stručnjaci sa 30+ godina iskustva.",
-  en: "Professional bookkeeping services, tax planning and financial consulting for businesses and agricultural farms. Senior experts with 30+ years of experience.",
-  ru: "Профессиональные бухгалтерские услуги, налоговое планирование и финансовое консультирование для предприятий и сельскохозяйственных хозяйств. Старшие специалисты с 30+ летним опытом.",
+  sr: "LD Biro – knjigovodstvena i računovodstvena agencija u Somboru. Stručni knjigovodstveni i računovodstveni poslovi, poresko planiranje i finansijsko savetovanje. 30+ godina iskustva.",
+  en: "LD Biro – a bookkeeping and accounting agency in Sombor. Professional bookkeeping and accounting services, tax planning and financial consulting. 30+ years of experience.",
+  ru: "LD Biro – бухгалтерская агенция в Сомборе. Профессиональные бухгалтерские и учётные услуги, налоговое планирование и финансовое консультирование. 30+ лет опыта.",
 };
 
 const keywords = [
   "knjigovodstvo",
   "računovodstvo",
-  "bookkeeping",
-  "accounting",
+  "knjigovodstveni poslovi",
+  "računovodstveni poslovi",
+  "knjigovodstveni i računovodstveni poslovi",
+  "knjigovodstvo i računovodstvo",
   "knjigovodstvo Sombor",
   "računovodstvo Sombor",
+  "knjigovodstvo i računovodstvo Sombor",
   "knjigovodstvena agencija",
   "računovodstvena agencija",
+  "knjigovodstvena i računovodstvena agencija",
   "knjigovodstvena agencija Sombor",
   "računovodstvena agencija Sombor",
   "knjigovodstvene usluge",
   "računovodstvene usluge",
+  "knjigovodstvene i računovodstvene usluge",
+  "bookkeeping",
+  "accounting",
+  "bookkeeping and accounting",
+  "bookkeeping Sombor",
+  "accounting Sombor",
   "poresko planiranje",
   "tax planning",
   "finansijsko savetovanje",
@@ -44,8 +54,9 @@ const keywords = [
   "payroll",
   "osnivanje preduzeća",
   "company formation",
-  "revizija",
-  "audit",
+  "PDV prijave",
+  "poreske prijave",
+  "finansijski izveštaji",
   "poljoprivredna gazdinstva",
   "agricultural farms",
   "MSP",
@@ -61,13 +72,48 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
   const isSerbian = locale === "sr";
   const isRussian = locale === "ru";
 
+  const serviceTypes = isSerbian
+    ? [
+        "Knjigovodstvo",
+        "Računovodstvo",
+        "Poresko planiranje",
+        "Finansijsko savetovanje",
+        "Obračun zarada",
+        "Osnivanje preduzeća",
+        "Knjigovodstvo poljoprivrednih gazdinstava",
+        "PDV i poreske prijave",
+        "Finansijski izveštaji",
+      ]
+    : isRussian
+      ? [
+          "Бухгалтерский учёт",
+          "Налоговое планирование",
+          "Финансовое консультирование",
+          "Расчёт заработной платы",
+          "Регистрация предприятий",
+          "Бухгалтерия для сельскохозяйственных хозяйств",
+          "НДС и налоговые декларации",
+          "Финансовая отчётность",
+        ]
+      : [
+          "Bookkeeping",
+          "Accounting",
+          "Tax Planning",
+          "Financial Consulting",
+          "Payroll Processing",
+          "Company Formation",
+          "Bookkeeping for agricultural farms",
+          "VAT and tax returns",
+          "Financial reporting",
+        ];
+
   // LocalBusiness schema for the accounting firm
   const localBusiness = {
     "@context": "https://schema.org",
-    "@type": "AccountingService",
+    "@type": ["AccountingService", "ProfessionalService", "LocalBusiness"],
     "@id": `${BASE_URL}/#organization`,
     name: "LD Biro",
-    alternateName: "LD BIRO DOO SOMBOR",
+    alternateName: ["LD BIRO DOO SOMBOR", "LD Biro Sombor"],
     description: descriptions[locale],
     url: canonicalUrl,
     logo: `${BASE_URL}/ld-logo.png`,
@@ -78,6 +124,7 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
       "@type": "PostalAddress",
       streetAddress: "Rade Končara 10",
       addressLocality: "Sombor",
+      addressRegion: "Vojvodina",
       postalCode: "25000",
       addressCountry: "RS",
     },
@@ -97,40 +144,35 @@ function getStructuredData(locale: Locale, canonicalUrl: string) {
     priceRange: "$$",
     currenciesAccepted: "RSD, EUR",
     paymentAccepted: "Cash, Bank Transfer",
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 45.7747,
-        longitude: 19.1128,
-      },
-      geoRadius: "100000",
+    areaServed: [
+      { "@type": "City", name: "Sombor" },
+      { "@type": "City", name: "Apatin" },
+      { "@type": "City", name: "Odžaci" },
+      { "@type": "City", name: "Kula" },
+      { "@type": "City", name: "Bačka Topola" },
+      { "@type": "AdministrativeArea", name: "Vojvodina" },
+      { "@type": "Country", name: "Srbija" },
+    ],
+    serviceType: serviceTypes,
+    knowsAbout: serviceTypes,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: isSerbian
+        ? "Usluge LD Biro"
+        : isRussian
+          ? "Услуги LD Biro"
+          : "LD Biro Services",
+      itemListElement: serviceTypes.map((s, i) => ({
+        "@type": "Offer",
+        position: i + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: s,
+          provider: { "@id": `${BASE_URL}/#organization` },
+          areaServed: { "@type": "City", name: "Sombor" },
+        },
+      })),
     },
-    serviceType: isSerbian
-      ? [
-          "Knjigovodstvo",
-          "Računovodstvo",
-          "Poresko planiranje",
-          "Finansijsko savetovanje",
-          "Obračun zarada",
-          "Osnivanje preduzeća",
-        ]
-      : isRussian
-        ? [
-            "Бухгалтерский учёт",
-            "Налоговое планирование",
-            "Финансовое консультирование",
-            "Расчёт заработной платы",
-            "Регистрация предприятий",
-          ]
-        : [
-            "Bookkeeping",
-            "Accounting",
-            "Tax Planning",
-            "Financial Consulting",
-            "Payroll Processing",
-            "Company Formation",
-          ],
     founder: {
       "@type": "Person",
       name: "Lidija Vojkić",
@@ -222,10 +264,11 @@ export default function MetaData({ locale }: MetaDataProps) {
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="LD Biro - Knjigovodstvo & Finansije" />
       <meta property="og:locale" content={ogLocale} />
-      <meta
-        property="og:locale:alternate"
-        content={locale === "sr" ? "en_US" : "sr_RS"}
-      />
+      {(["sr_RS", "en_US", "ru_RU"] as const)
+        .filter((alt) => alt !== ogLocale)
+        .map((alt) => (
+          <meta key={alt} property="og:locale:alternate" content={alt} />
+        ))}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -235,15 +278,24 @@ export default function MetaData({ locale }: MetaDataProps) {
       <meta name="twitter:image:alt" content="LD Biro - Knjigovodstvo & Finansije" />
 
       {/* Robots - Allow search engine crawling and indexing */}
-      <meta name="robots" content="index, follow" />
-      <meta name="googlebot" content="index, follow" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+      {/* Local SEO geo tags */}
+      <meta name="geo.region" content="RS-VO" />
+      <meta name="geo.placename" content="Sombor" />
+      <meta name="geo.position" content="45.7747;19.1128" />
+      <meta name="ICBM" content="45.7747, 19.1128" />
+      <meta name="theme-color" content="#0f172a" />
 
       {/* Favicon */}
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
       <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/ld-logo.png" />
+      <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+      <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+      <link rel="manifest" href="/site.webmanifest" />
 
       {/* JSON-LD Structured Data */}
       <script
