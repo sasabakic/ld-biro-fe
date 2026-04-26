@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ldbiro.rs</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://ldbiro.rs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ldbiro.rs/en" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ldbiro.rs/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ldbiro.rs" />
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ldbiro.rs/en</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://ldbiro.rs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ldbiro.rs/en" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ldbiro.rs/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ldbiro.rs" />
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ldbiro.rs/ru</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://ldbiro.rs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ldbiro.rs/en" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ldbiro.rs/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ldbiro.rs" />
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

@@ -1,0 +1,15 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "ld-biro-fe",
+	"compatibility_date": "2025-04-25",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"routes": [
+		{ "pattern": "ldbiro.rs", "custom_domain": true },
+		{ "pattern": "www.ldbiro.rs", "custom_domain": true }
+	]
+}

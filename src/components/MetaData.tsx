@@ -204,11 +204,12 @@ export default function MetaData({ locale }: MetaDataProps) {
       <meta name="author" content="LD Biro" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      {/* Canonical and Language Alternates - DISABLED for temporary deployment */}
-      {/* <link rel="canonical" href={canonicalUrl} /> */}
-      {/* <link rel="alternate" hrefLang="sr" href={BASE_URL} /> */}
-      {/* <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en`} /> */}
-      {/* <link rel="alternate" hrefLang="x-default" href={BASE_URL} /> */}
+      {/* Canonical and Language Alternates */}
+      <link rel="canonical" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="sr" href={BASE_URL} />
+      <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en`} />
+      <link rel="alternate" hrefLang="ru" href={`${BASE_URL}/ru`} />
+      <link rel="alternate" hrefLang="x-default" href={BASE_URL} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
@@ -233,27 +234,24 @@ export default function MetaData({ locale }: MetaDataProps) {
       <meta name="twitter:image" content={OG_IMAGE} />
       <meta name="twitter:image:alt" content="LD Biro - Knjigovodstvo & Finansije" />
 
-      {/* Robots - Block all search engine crawling and indexing */}
-      <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-      <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-      <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
-      <meta name="googlebot-news" content="noindex, nofollow" />
-      <meta name="slurp" content="noindex, nofollow" />
-      <meta name="duckduckbot" content="noindex, nofollow" />
-      <meta name="baiduspider" content="noindex, nofollow" />
-      <meta name="yandex" content="noindex, nofollow" />
+      {/* Robots - Allow search engine crawling and indexing */}
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
 
       {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+      <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
       <link rel="apple-touch-icon" sizes="180x180" href="/ld-logo.png" />
 
-      {/* JSON-LD Structured Data - DISABLED for temporary deployment */}
-      {/* <script
+      {/* JSON-LD Structured Data */}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(structuredData),
         }}
-      /> */}
+      />
     </Head>
   );
 }
