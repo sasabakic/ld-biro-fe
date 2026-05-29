@@ -1,0 +1,10 @@
+# Keep the build context small (node_modules is huge and provided via a volume).
+node_modules
+.git
+.next
+.open-next
+.wrangler
+dist
+out
+*.log
+.pnpm-store

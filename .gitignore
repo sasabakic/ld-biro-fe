@@ -43,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pnpm container store (should live in a Docker volume, never on host)
+.pnpm-store/
